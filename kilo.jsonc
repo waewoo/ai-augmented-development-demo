@@ -1,0 +1,13 @@
+{
+  // Project rules are explicit so the demo can show how durable instructions
+  // are loaded by the current Kilo Code configuration format.
+  "instructions": [
+    ".kilo/rules/architecture.md",
+    ".kilo/rules/testing.md",
+    ".kilo/rules/reporting.md",
+    ".kilo/rules/security.md"
+  ],
+  "skills": {
+    "paths": [".kilo/skills"]
+  }
+}
