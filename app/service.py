@@ -7,7 +7,9 @@ TASKS = [
 ]
 
 
-def list_tasks() -> list[Task]:
-    """Return the current in-memory task list."""
+def list_tasks(status: TaskStatus | None = None) -> list[Task]:
+    """Return all tasks, or only tasks matching the optional status."""
 
-    return TASKS.copy()
+    if status is None:
+        return TASKS.copy()
+    return [task for task in TASKS if task.status == status]
