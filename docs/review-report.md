@@ -22,14 +22,19 @@ mypy app                  Success: no issues found
 
 La vérification API couvre le comportement sans filtre, deux valeurs valides et la réponse 422 pour une valeur invalide. Les tests ont émis deux avertissements de dépréciation provenant de la combinaison FastAPI/Starlette/TestClient de l’environnement ; ils ne bloquent pas la démonstration, mais doivent être revalidés lors d’une mise à jour de dépendances.
 
-## Support
+## Support Slidev
 
-- 15 slides natives, format 16:9 ;
-- notes présentes sur chaque slide ;
-- schémas composés de formes et textes éditables ;
+- source de vérité : `presentation/slides.md` ;
+- composants Vue : workflow, contexte, rules, code, harnais et cues de démonstration ;
+- animations `v-click` conservées dans la présentation web ;
+- export de diffusion statique généré automatiquement sans `v-click` afin de conserver 15 pages.
+
+- 15 slides, format 16:9 ;
+- notes présentes sur les 15 slides du PPTX exporté ;
+- PDF, PPTX, PPTX editable et 15 captures PNG exportés depuis Slidev ;
 - minutage principal : 42 minutes ; total avec formation et questions : 60 minutes.
 
-La vérification disponible dans cet environnement est structurelle et textuelle. Aucun moteur local de rendu Office n’est installé ; une ouverture finale dans PowerPoint, LibreOffice Impress ou Google Slides reste recommandée avant diffusion pour valider le rendu propre à l’environnement de présentation.
+Les captures PNG ont été inspectées avec Chromium, notamment les slides de contexte, code, harnais et synthèse. Aucun moteur local de rendu Office n’est installé ; une ouverture finale dans PowerPoint, LibreOffice Impress ou Google Slides reste recommandée avant diffusion pour valider le degré d’éditabilité et le rendu propre à l’environnement de présentation.
 
 ## Conclusion
 
