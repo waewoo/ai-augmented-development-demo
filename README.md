@@ -49,7 +49,8 @@ Voir :
 - [`docs/speaker-notes.md`](docs/speaker-notes.md) pour les notes détaillées ;
 - [`docs/demo-runbook.md`](docs/demo-runbook.md) pour le conducteur opérationnel ;
 - [`docs/demo-prompts.md`](docs/demo-prompts.md) pour les textes exacts ;
-- [`presentation/premiers-pas-developpement-augmente-ia.pptx`](presentation/premiers-pas-developpement-augmente-ia.pptx) pour le support ;
+- [`presentation/slides.md`](presentation/slides.md) pour la source Slidev ;
+- `presentation/exports/presentation.pdf` et `presentation/exports/presentation.pptx` pour les exports de diffusion ;
 - [`docs/resources.md`](docs/resources.md) pour les ressources officielles vérifiées.
 
 ## États de secours

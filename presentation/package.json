@@ -1,0 +1,22 @@
+{
+  "name": "ai-augmented-development-demo-slides",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=20.19.0"
+  },
+  "scripts": {
+    "dev": "slidev slides.md",
+    "build": "slidev build slides.md --out dist",
+    "export:pdf": "node scripts/export-slidev.mjs pdf",
+    "export:pptx": "node scripts/export-slidev.mjs pptx",
+    "export:pptx-editable": "node scripts/export-slidev.mjs pptx-editable",
+    "export:png": "node scripts/export-slidev.mjs png",
+    "check": "npm run build && node scripts/check-deck.mjs"
+  },
+  "devDependencies": {
+    "@slidev/cli": "53.0.0",
+    "@slidev/theme-default": "0.25.0",
+    "playwright-chromium": "^1.63.0"
+  }
+}
