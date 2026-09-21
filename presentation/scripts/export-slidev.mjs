@@ -1,5 +1,5 @@
 import { existsSync } from 'node:fs'
-import { cp, mkdir, mkdtemp, readFile, readdir, rm, writeFile } from 'node:fs/promises'
+import { cp, mkdir, mkdtemp, readFile, readdir, rm, symlink, writeFile } from 'node:fs/promises'
 import { execFile } from 'node:child_process'
 import { promisify } from 'node:util'
 import { tmpdir } from 'node:os'
@@ -29,6 +29,8 @@ for (const file of await readdir('components')) {
   await writeFile(join(tempProject, 'components', file), stripClicks(await readFile(source, 'utf8')))
 }
 await cp('styles', join(tempProject, 'styles'), { recursive: true })
+await symlink(resolve('node_modules'), join(tempProject, 'node_modules'), 'junction')
+await symlink(resolve('package.json'), join(tempProject, 'package.json'))
 
 const args = [resolve('node_modules/.bin/slidev'), 'export', 'slides.md', '--format', format, '--output', resolve(output)]
 if (existsSync('/usr/bin/google-chrome')) args.push('--executable-path', '/usr/bin/google-chrome')

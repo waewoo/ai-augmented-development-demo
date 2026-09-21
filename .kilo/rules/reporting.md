@@ -1,7 +1,8 @@
-# Reporting
+# Compte rendu
 
-- Announce the files modified and why each one changed.
-- Present the exact validation commands executed and their results.
-- Report risks, limitations, skipped controls, and any environmental assumption.
-- Never invent a command result or claim that an unexecuted check passed.
-- Distinguish clearly between an agent suggestion, a human approval, and deterministic evidence.
+- Annoncer les fichiers modifiés et la raison de chaque modification.
+- Présenter les commandes exactes de validation exécutées et leurs résultats.
+- Signaler les risques, les limitations, les contrôles ignorés et toute hypothèse liée à l’environnement.
+- Ne jamais inventer un résultat de commande ni affirmer qu’une vérification non exécutée a réussi.
+- Distinguer clairement une suggestion de l’agent, une approbation humaine et une preuve déterministe.
+- En cas de conflit, respecter dans l’ordre la demande explicite de l’utilisateur, `AGENTS.md`, les rules du projet, puis les skills. Un skill ne constitue jamais une autorisation de dépasser ces contraintes.

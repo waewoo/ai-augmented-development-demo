@@ -1,26 +1,26 @@
 ---
 name: review-change
-description: Perform a read-only review by comparing the request, approved plan, project rules, final diff, and actual validation results; classify findings by severity and state clearly whether a blocking problem remains.
+description: Effectuer une revue en lecture seule en comparant la demande, le plan approuvé, les règles du projet, le diff final et les résultats de validation réels ; classer les constats par gravité et indiquer clairement si un problème bloquant subsiste.
 ---
 
-# Review a change
+# Revoir une modification
 
-Use this skill after implementation and deterministic checks have produced a diff.
+Utiliser ce skill après que l’implémentation et les vérifications déterministes ont produit un diff.
 
-## Procedure
+## Procédure
 
-1. Read the initial request and the approved plan.
-2. Read the rules that apply to the changed files.
-3. Inspect the complete diff, not only the agent summary.
-4. Verify the reported test and lint results against the available evidence.
-5. Check every acceptance criterion, including preserved behavior and invalid input handling.
-6. Classify observations as `Blocker`, `Important`, `Minor`, or `None`.
-7. Call out missing tests, unverified assumptions, security concerns, and scope drift.
+1. Lire la demande initiale et le plan approuvé.
+2. Lire les règles qui s’appliquent aux fichiers modifiés.
+3. Inspecter le diff complet, et pas seulement le résumé de l’agent.
+4. Relancer `make demo-check` lorsque cela est possible et comparer le résultat aux preuves rapportées. Si la relance est impossible, indiquer explicitement que les résultats n’ont pas été vérifiés indépendamment.
+5. Vérifier chaque critère d’acceptation, y compris le comportement préservé et la gestion des entrées invalides.
+6. Classer les observations comme `Bloquant`, `Important`, `Mineur` ou `Aucune anomalie`.
+7. Signaler les tests manquants, les hypothèses non vérifiées, les préoccupations de sécurité et toute dérive de périmètre.
 
-## Hard boundary
+## Limite stricte
 
-Do not modify any file. Do not fix findings during this review. If no blocking problem exists, say so explicitly and distinguish that statement from a claim of perfection.
+Ne modifier aucun fichier. Ne pas corriger les constats pendant cette revue. Si aucun problème bloquant n’existe, l’indiquer explicitement et distinguer cette affirmation d’une garantie de perfection.
 
-## Expected output
+## Sortie attendue
 
-Use these headings: `Scope reviewed`, `Findings`, `Acceptance criteria`, `Evidence`, `Risks`, and `Conclusion`.
+Utiliser les titres suivants : `Périmètre examiné`, `Constats`, `Critères d’acceptation`, `Éléments probants`, `Risques` et `Conclusion`.

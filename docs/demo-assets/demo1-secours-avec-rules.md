@@ -10,5 +10,5 @@
 ## Contrôles
 
 - préserver la réponse actuelle sans filtre ;
-- exécuter `make check` avant de déclarer terminé ;
+- exécuter `make demo-check` avant de déclarer terminé ;
 - inspecter le diff et signaler tout contrôle non exécuté.

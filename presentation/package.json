@@ -6,7 +6,7 @@
     "node": ">=20.19.0"
   },
   "scripts": {
-    "dev": "slidev slides.md",
+    "dev": "slidev slides.md --port 3030 --remote --bind 0.0.0.0",
     "build": "slidev build slides.md --out dist",
     "export:pdf": "node scripts/export-slidev.mjs pdf",
     "export:pptx": "node scripts/export-slidev.mjs pptx",
@@ -17,6 +17,7 @@
   "devDependencies": {
     "@slidev/cli": "53.0.0",
     "@slidev/theme-default": "0.25.0",
-    "playwright-chromium": "^1.63.0"
+    "playwright-chromium": "^1.63.0",
+    "uqr": "0.1.3"
   }
 }

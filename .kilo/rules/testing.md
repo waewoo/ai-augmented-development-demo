@@ -1,7 +1,7 @@
-# Testing
+# Tests
 
-- Every functional modification must be covered by at least one focused test.
-- Preserve existing tests and their intent.
-- Cover both the unchanged behavior and the new behavior when adding a filter or validation rule.
-- Run `make check` before declaring a task complete.
-- Tests are evidence, not a substitute for reading the diff and checking the acceptance criteria.
+- Chaque critère d’acceptation fonctionnel doit être couvert par un test ciblé.
+- Préserver les tests existants et leur intention.
+- Couvrir le comportement nominal, les cas limites, le comportement inchangé et les entrées invalides lorsque cela est pertinent, notamment lors de l’ajout d’un filtre ou d’une règle de validation.
+- Exécuter `make demo-check` avant de déclarer une tâche terminée.
+- Les tests sont des preuves, pas un substitut à la lecture du diff et à la vérification des critères d’acceptation.

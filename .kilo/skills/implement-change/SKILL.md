@@ -1,25 +1,25 @@
 ---
 name: implement-change
-description: Implement an explicitly approved repository plan with the smallest safe change, add or update tests, run deterministic project checks, and report evidence without claiming unexecuted checks.
+description: Implémenter un plan de modification du dépôt explicitement approuvé avec le plus petit changement sûr, ajouter ou mettre à jour les tests, exécuter les vérifications déterministes du projet et rendre compte des preuves sans prétendre avoir exécuté des vérifications qui ne l’ont pas été.
 ---
 
-# Implement an approved change
+# Implémenter une modification approuvée
 
-Use this skill only after a human has approved a concrete plan.
+Utiliser ce skill uniquement après l’approbation humaine explicite d’un plan concret dans la conversation. Toute modification hors du plan nécessite une nouvelle approbation.
 
-## Procedure
+## Procédure
 
-1. Restate the approved plan and confirm the acceptance criteria.
-2. Read the applicable project rules before editing.
-3. Make the smallest coherent implementation that satisfies the plan.
-4. Add or update focused tests while preserving existing behavior.
-5. Run `make check`, or run each command it contains if the Make target is unavailable.
-6. Inspect the final diff for unrelated changes, secrets, and missing tests.
-7. Report files changed, commands actually run, results, risks, and any skipped check.
+1. Reformuler le plan approuvé, confirmer les critères d’acceptation et vérifier que l’approbation humaine est explicite.
+2. Lire les règles du projet applicables avant toute modification.
+3. Réaliser l’implémentation cohérente la plus petite qui satisfasse le plan.
+4. Si le comportement fonctionnel change, ajouter ou mettre à jour des tests ciblés pour couvrir les critères d’acceptation, tout en préservant le comportement existant.
+5. Exécuter `make demo-check`, ou chacune des commandes qu’il contient si la cible Make est indisponible.
+6. Inspecter le diff final pour repérer les modifications sans rapport, les secrets et les tests manquants.
+7. Rendre compte des fichiers modifiés, des commandes réellement exécutées, des résultats, des risques et de toute vérification ignorée.
 
-## Hard boundaries
+## Limites strictes
 
-- Do not expand scope without asking for approval.
-- Do not claim a check passed unless it was executed and its output supports that claim.
-- Do not hide a failing check behind a summary.
-- Do not use destructive commands or external services for this local demo.
+- Ne pas élargir le périmètre sans demander d’approbation.
+- Ne pas affirmer qu’une vérification a réussi si elle n’a pas été exécutée et si sa sortie ne l’étaye pas.
+- Ne pas dissimuler une vérification en échec derrière un résumé.
+- Ne pas utiliser de commandes destructrices ni de services externes pour cette démonstration locale.

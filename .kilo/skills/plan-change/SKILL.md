@@ -1,27 +1,27 @@
 ---
 name: plan-change
-description: Explore a small repository change, read applicable project rules, reformulate acceptance criteria, identify files and tests, surface risks, and produce a read-only implementation plan before human approval.
+description: Explorer une petite modification du dépôt, lire les règles applicables du projet, reformuler les critères d’acceptation, identifier les fichiers et les tests, faire ressortir les risques et produire un plan d’implémentation en lecture seule avant l’approbation humaine.
 ---
 
-# Plan a change
+# Planifier une modification
 
-Use this skill when a request should be understood and planned before any file is changed.
+Utiliser ce skill lorsqu’une demande doit être comprise et planifiée avant toute modification de fichier.
 
-## Procedure
+## Procédure
 
-1. Explore the repository structure and identify the relevant entry points.
-2. Read the applicable rules in `.kilo/rules/` before proposing a solution.
-3. Read the existing implementation and tests that constrain the request.
-4. Reformulate the request as observable acceptance criteria, including unchanged behavior.
-5. Identify the smallest set of files likely to change.
-6. Propose tests for success, edge cases, and validation errors where relevant.
-7. List risks, assumptions, and information that is still missing.
-8. Present the plan in a numbered sequence and stop.
+1. Explorer la structure du dépôt et identifier les points d’entrée pertinents.
+2. Lire `AGENTS.md`, `kilo.jsonc` et les règles applicables dans `.kilo/rules/` avant de proposer une solution.
+3. Lire l’implémentation existante et les tests qui encadrent la demande.
+4. Reformuler la demande en critères d’acceptation observables, y compris le comportement inchangé.
+5. Identifier le plus petit ensemble de fichiers susceptibles d’être modifiés.
+6. Proposer des tests de réussite, des cas limites et des erreurs de validation lorsque cela est pertinent.
+7. Énumérer les risques, les hypothèses et les informations encore manquantes.
+8. Présenter le plan sous forme de séquence numérotée, indiquer explicitement « Approbation humaine requise », puis s’arrêter.
 
-## Hard boundary
+## Limite stricte
 
-Do not create, edit, delete, or format files. Do not run commands that modify the repository. Wait for explicit human approval before implementation.
+Ne créer, modifier, supprimer ni formater aucun fichier. Ne pas exécuter de commandes qui modifient le dépôt. Attendre l’approbation humaine explicite avant l’implémentation.
 
-## Expected output
+## Sortie attendue
 
-Use these headings: `Understanding`, `Acceptance criteria`, `Files`, `Tests`, `Risks`, `Plan`, and `Approval needed`.
+Utiliser les titres suivants : `Compréhension`, `Critères d’acceptation`, `Fichiers`, `Tests`, `Risques`, `Plan` et `Approbation requise`. Terminer par une demande explicite d’approbation avant toute implémentation.

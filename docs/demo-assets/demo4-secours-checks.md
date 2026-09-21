@@ -1,7 +1,7 @@
 # Contrôles attendus
 
 ```text
-$ make check
+$ make demo-check
 pytest                         PASS — 4 tests
 ruff check .                   PASS
 ruff format --check .          PASS
