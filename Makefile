@@ -47,9 +47,42 @@ demo-types: ## Vérifie le typage statique strict avec Mypy
 demo-run-api: ## Démarre l'API FastAPI locale pour la démo (http://127.0.0.1:8000/docs)
 	uvicorn app.main:app --reload
 
+demo-swagger: ## Ouvre la documentation Swagger de l'API (http://localhost:8000/docs)
+	python -m webbrowser "http://localhost:8000/docs"
+
+demo-step1: ## Charge l'état Démo 1 (code initial sans filtre status)
+	@cp -f docs/demo-steps/step-1/app/* app/
+	@cp -f docs/demo-steps/step-1/tests/* tests/
+	@cp -f docs/demo-steps/step-1/docs/ARCHITECTURE.md docs/ARCHITECTURE.md 2>/dev/null || true
+	@printf "\033[1;32m✅ État Démo 1 chargé (code initial sans filtre) : prêt pour le Choc des Rules !\033[0m\n"
+demo-step-1 demo-step-start demo-step-reset: demo-step1
+
+demo-step2: ## Charge l'état Démo 2 (code initial en lecture seule pour cadrage)
+	@cp -f docs/demo-steps/step-2/app/* app/
+	@cp -f docs/demo-steps/step-2/tests/* tests/
+	@cp -f docs/demo-steps/step-2/docs/ARCHITECTURE.md docs/ARCHITECTURE.md 2>/dev/null || true
+	@printf "\033[1;32m✅ État Démo 2 chargé : prêt pour Cadrer & Planifier (skill plan-change) !\033[0m\n"
+demo-step-2: demo-step2
+
+demo-step3: ## Charge l'état Démo 3 (code avec filtre status & 4 tests validés)
+	@cp -f docs/demo-steps/step-3/app/* app/
+	@cp -f docs/demo-steps/step-3/tests/* tests/
+	@cp -f docs/demo-steps/step-3/docs/ARCHITECTURE.md docs/ARCHITECTURE.md 2>/dev/null || true
+	@printf "\033[1;32m✅ État Démo 3 chargé (filtre status & 4 tests) : prêt pour Implémenter le plan !\033[0m\n"
+demo-step-3: demo-step3
+
+demo-step4: ## Charge l'état Démo 4 (code complet + docs/ARCHITECTURE.md Mermaid)
+	@cp -f docs/demo-steps/step-4/app/* app/
+	@cp -f docs/demo-steps/step-4/tests/* tests/
+	@cp -f docs/demo-steps/step-4/docs/ARCHITECTURE.md docs/ARCHITECTURE.md 2>/dev/null || true
+	@printf "\033[1;32m✅ État Démo 4 chargé (code + doc ARCHITECTURE.md Mermaid) : prêt pour Documentation & MCP !\033[0m\n"
+demo-step-4 demo-step-restore demo-step-final: demo-step4
+
+
 
 
 demo-create-worktree: ## Prépare un worktree Git isolé pour répéter (ex: make demo-create-worktree WORKTREE=../demo-start)
+
 	@target="$${WORKTREE:-../ai-augmented-development-demo-start}"; \
 	if [ -e "$$target" ]; then \
 		printf 'Refus : le chemin existe déjà : %s\n' "$$target" >&2; \

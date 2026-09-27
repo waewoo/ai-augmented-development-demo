@@ -6,12 +6,22 @@
 
 ---
 
+## 📋 Initialisation (10 secondes)
+
+Dans le terminal, assurez-vous d'être sur l'état initial :
+```bash
+make demo-step1
+```
+*(Confirme que `app/main.py` et `app/service.py` ne contiennent aucun filtre `status`).*
+
+---
+
 ## 🧭 Étape 0 — Le "Tour du cockpit" de l'IDE (30 secondes)
 
 Avant de lancer le premier prompt, prenez 30 secondes pour orienter la salle dans l'interface de Kilo Code (ou de votre IDE) afin d'éviter toute distraction :
 
 1. **À gauche — Le projet :** Pointez l'arborescence standard (`app/`, `tests/`, `Makefile`) et la présence de `AGENTS.md` à la racine.
-2. **Au centre — L'espace d'exécution :** L'éditeur de code et le terminal local où tournent nos commandes réelles (`make demo-check`).
+2. **Au centre — L'espace d'exécution :** L'éditeur de code (`app/main.py` sans filtre) et le terminal local où tournent nos commandes réelles (`make demo-check`).
 3. **À droite — L'agent :** Le panneau de conversation outillé qui dispose d'autorisations pour inspecter les fichiers et lancer des outils.
 4. **La phrase clé d'ingénieur :**
    > *« Nous utilisons ici Kilo Code pour la démo, mais cette tripartition (fichiers, terminal, panneau d'agent) est identique dans Cursor, Copilot Edits ou Claude Code en terminal. La méthode que nous allons voir est 100 % universelle. »*

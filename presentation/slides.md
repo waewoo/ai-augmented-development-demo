@@ -290,7 +290,8 @@ LIVE DEMO 1 (3 min)
 - Révéler : ses probabilités par défaut (risque de bibliothèques non autorisées ou code non typé).
 
 🎬 **En direct dans Kilo Code :**
-0. **Tour d'horizon rapide du cockpit (30 secondes) :**
+0. **Préparation & tour d'horizon rapide du cockpit (30 secondes) :**
+   - S'assurer que le projet est en état initial avec `make demo-step1`.
    - Situer les 3 espaces à l'écran : à gauche l'arborescence (`app/`, `tests/`, `AGENTS.md`), au centre le code et le terminal de commandes, à droite le panneau de chat de l'agent.
    - Désamorcer l'effet produit : *« Nous utilisons ici Kilo Code, mais le principe est rigoureusement identique dans Cursor, Copilot ou Claude Code. »*
 1. **Évoquer la dérive sans rules (20s) :**
@@ -439,7 +440,7 @@ LIVE DEMO 3 (4 min)
 
 ➡️ **Transition :** « Notre code local est propre et testé. Mais une application d'entreprise ne vit pas en vase clos : comment connecter l'agent à nos outils comme Jira, Confluence ou GitLab ? »
 
-🛟 **Solution de secours :** Ouvrir directement `docs/demo-assets/demo4-secours-diff.md`.
+🛟 **Solution de secours :** Exécuter `make demo-step3` dans le terminal pour injecter immédiatement le code conforme et lancer `make demo-check`, ou ouvrir directement `docs/demo-assets/demo4-secours-diff.md`.
 -->
 
 ---
@@ -507,7 +508,7 @@ LIVE DEMO 4 (4 min)
 
 ➡️ **Transition :** « Ce contrôle et cette intégration s'inscrivent dans un ensemble plus vaste : le harnais. »
 
-🛟 **Solution de secours :** Ouvrir `docs/ARCHITECTURE.md` dans l'IDE pour afficher le rendu Mermaid, et s'appuyer sur `docs/demo-assets/demo4-secours-confluence.md`.
+🛟 **Solution de secours :** Exécuter `make demo-step4` dans le terminal pour actualiser instantanément `docs/ARCHITECTURE.md` avec le diagramme Mermaid, et s'appuyer sur `docs/demo-assets/demo4-secours-confluence.md`.
 -->
 
 ---

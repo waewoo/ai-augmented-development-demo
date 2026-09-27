@@ -32,6 +32,8 @@ testpaths = ["tests"]
 target-version = "py310"
 line-length = 88
 src = ["app", "tests"]
+extend-exclude = ["docs/demo-steps"]
+
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "UP", "B"]
