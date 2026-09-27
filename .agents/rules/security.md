@@ -1,8 +1,10 @@
-# Sécurité
+# Sécurité et Environnement
 
-- Ne jamais afficher, versionner, journaliser, transmettre ou exposer des secrets, jetons, identifiants ou données privées.
-- Ne pas exécuter de commandes destructrices ou ambiguës pendant la démonstration.
-- Demander une validation humaine avant toute opération risquée ou tout effet de bord externe.
-- Ne pas contacter de service externe sans autorisation explicite.
-- Garder la démonstration locale et utiliser uniquement des données synthétiques.
-- Les règles sont des recommandations ; les permissions, les tests, la CI et la revue humaine restent des contrôles nécessaires.
+- **Garde-fous d'exécution** :
+  - Ne jamais exécuter de commandes destructrices ou ambiguës.
+  - Ne réaliser aucun appel réseau externe : l'environnement d'exécution reste 100 % local.
+  - Utiliser exclusivement des données synthétiques en mémoire.
+- **Gestion des secrets** :
+  - Ne jamais afficher, versionner, journaliser ou transmettre de jetons, clés API ou identifiants.
+- **Contrôle humain** :
+  - Demander confirmation humaine préalable avant toute commande à potentiel effet de bord sur le système hôte.

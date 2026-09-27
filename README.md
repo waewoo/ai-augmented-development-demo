@@ -153,19 +153,15 @@ Le script d’export retire les directives `v-click` dans une copie temporaire a
 
 ## Démonstrations en direct
 
-Le parcours pédagogique de la session (42 min) intègre 4 démonstrations en direct réparties tout au long des 18 slides, avec des fiches individuelles très simples à suivre contenant les prompts prêts au copier/coller :
+Les démonstrations sont regroupées dans un **guide conducteur unique** prêt à l'emploi : [**`docs/DEMOS.md`**](docs/DEMOS.md).
 
-| Démo | Slide & Durée | Fiche pas-à-pas | Objectif & Compétences démontrées |
+| Acte | Slide & Durée | Guide pas-à-pas | Objectif & Compétences démontrées |
 | :--- | :--- | :--- | :--- |
-| **Démo 1** | Slide 07 (3 min) | [`docs/demo-1.md`](docs/demo-1.md) | **Le choc des Rules :** Même prompt envoyé sans rules (code chaotique) puis avec `AGENTS.md` (refus de coder sans plan, contrainte 422). |
-| **Démo 2** | Slide 09 (3 min) | [`docs/demo-2.md`](docs/demo-2.md) | **Dans le ventre d'un Skill :** Inspection de `SKILL.md` et déclenchement sémantique de `plan-change` par langage naturel. |
-| **Démo 3** | Slide 11 (4 min) | [`docs/demo-3.md`](docs/demo-3.md) | **Skill + MCP Confluence :** Génération de documentation vivante (`document-architecture`) avec schéma Mermaid interactif et matrice des routes dans [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md). |
-| *(Pont)* | Slide 12 (2 min) | *(Slide conceptuelle)* | **Contrôles déterministes & Séparation des pouvoirs :** Pourquoi le résumé de l'agent n'est pas une preuve et pourquoi un agent ne doit pas auditer son propre code. |
-| **Démo 4** | Slide 13 (4 min) | [`docs/demo-4.md`](docs/demo-4.md) | **L'Agent Reviewer :** Duel d'agents avec `review-change` auditant le diff Git de manière impartiale (rejet 422, tests, `make demo-check`). |
+| **Acte 1** | Slide 09 (3 min) | [**`docs/DEMOS.md` — Acte 1**](docs/DEMOS.md#acte-1) | **Le duo Rules + Skills :** Prompt direct à l'impératif → refus d'écrire sans plan (`AGENTS.md`) + cadrage rigoureux (`plan-change`) + approbation humaine. |
+| **Acte 2** | Slide 11 (4 min) | [**`docs/DEMOS.md` — Acte 2**](docs/DEMOS.md#acte-2) | **De l'approbation au code :** Implémentation chirurgicale avec `implement-change` et preuve par les tests déterministes (`make demo-check`). |
+| **Acte 3** | Slide 13 (4 min) | [**`docs/DEMOS.md` — Acte 3**](docs/DEMOS.md#acte-3) | **Documentation vivante & MCP :** Mise à jour du schéma Mermaid dans `docs/ARCHITECTURE.md` et publication sur Confluence via MCP. |
 
-- Le sommaire des démos est consultable dans [`docs/DEMOS.md`](docs/DEMOS.md).
-- Les fiches de démo directes sont [`docs/demo-1.md`](docs/demo-1.md), [`docs/demo-2.md`](docs/demo-2.md), [`docs/demo-3.md`](docs/demo-3.md) et [`docs/demo-4.md`](docs/demo-4.md).
-- Le conducteur chronologique pas à pas et le guide complet sont dans [`docs/DEMOS.md`](docs/DEMOS.md).
+- Le conducteur complet et les prompts à copier/coller sont centralisés dans [**`docs/DEMOS.md`**](docs/DEMOS.md).
 - Les notes orateur sont directement intégrées dans le support Slidev [`presentation/slides.md`](presentation/slides.md) (mode présentateur).
 
 ## À quoi servent les fichiers de secours (`docs/demo-assets/`) ?

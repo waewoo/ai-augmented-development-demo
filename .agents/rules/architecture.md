@@ -1,7 +1,11 @@
-# Architecture
+# Principes d'Architecture
 
-- Garder cette démonstration volontairement petite et facile à expliquer.
-- Conserver la couche HTTP dans `app/main.py`, les modèles de données dans `app/models.py` et la sélection des tâches dans `app/service.py`.
-- Privilégier une séparation claire entre les responsabilités de l’API et la petite fonction métier/de service.
-- Ne pas ajouter de dépendance externe sans justification précise dans le résumé de la modification et sans approbation humaine explicite.
-- Préserver la source de données en mémoire ; la persistance est hors du périmètre de la démonstration.
+- **Séparation stricte des responsabilités** :
+  - **Couche API (`app/main.py`)** : déclare les routes FastAPI, documente les endpoints et délègue immédiatement au service. Elle ne doit contenir aucune logique métier ni algorithme de filtrage.
+  - **Couche Modèles (`app/models.py`)** : définit les schémas de données Pydantic et les énumérations (types fermés).
+  - **Couche Métier (`app/service.py`)** : implémente la logique d'interrogation et de filtrage des données. Le service est du code Python pur : il ne doit dépendre d'aucun composant HTTP FastAPI (`Request`, `Response`, `Query`, `HTTPException`).
+- **Gestion de l'état mémoire** :
+  - Stockage en mémoire vive uniquement, sans dépendance de base de données externe.
+  - **Immutabilité défensive** : toujours renvoyer des copies (nouvelles listes ou `.copy()`) pour éviter toute altération accidentelle de l'état en mémoire.
+- **Sobriété technique** :
+  - Préférer la solution la plus simple et lisible sans sur-ingénierie.

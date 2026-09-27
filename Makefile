@@ -50,33 +50,56 @@ demo-run-api: ## Démarre l'API FastAPI locale pour la démo (http://127.0.0.1:8
 demo-swagger: ## Ouvre la documentation Swagger de l'API (http://localhost:8000/docs)
 	python -m webbrowser "http://localhost:8000/docs"
 
-demo-step1: ## Charge l'état Démo 1 (code initial sans filtre status)
+demo-step1-sans-rules demo-norules: ## Charge l'état Démo 1 SANS rules (masque AGENTS.md, .agents et kilo.jsonc pour observer la dérive)
+	@cp -f docs/demo-steps/step-1/app/* app/
+	@cp -f docs/demo-steps/step-1/tests/* tests/
+	@rm -rf plans
+	@if [ -f AGENTS.md ]; then mv -f AGENTS.md .AGENTS.md.bak; fi
+	@if [ -f AGENTS.md.disabled ]; then mv -f AGENTS.md.disabled .AGENTS.md.bak; fi
+	@if [ -f kilo.json ]; then mv -f kilo.json .kilo.json.bak; fi
+	@if [ -f kilo.jsonc ]; then mv -f kilo.jsonc .kilo.jsonc.bak; fi
+	@if [ -f kilo.jsonc.disabled ]; then mv -f kilo.jsonc.disabled .kilo.jsonc.bak; fi
+	@if [ -d .agents ]; then mv -f .agents .agents.bak; fi
+	@printf "\033[1;33m⚠️  Mode SANS RULES activé : .agents, AGENTS.md et kilo.jsonc masqués. Lancez la demande pour voir la dérive !\033[0m\n"
+
+demo-step1 demo-step1-avec-rules demo-rules: ## Charge l'état Démo 1 (code initial sans filtre, sous-dossiers datés dans plans/ supprimés pour recommencer)
 	@cp -f docs/demo-steps/step-1/app/* app/
 	@cp -f docs/demo-steps/step-1/tests/* tests/
 	@cp -f docs/demo-steps/step-1/docs/ARCHITECTURE.md docs/ARCHITECTURE.md 2>/dev/null || true
-	@printf "\033[1;32m✅ État Démo 1 chargé (code initial sans filtre) : prêt pour le Choc des Rules !\033[0m\n"
+	@rm -rf plans && mkdir -p plans
+	@cp -rf docs/demo-steps/step-1/plans/* plans/ 2>/dev/null || true
+	@if [ -f .AGENTS.md.bak ]; then mv -f .AGENTS.md.bak AGENTS.md; fi
+	@if [ -f AGENTS.md.disabled ]; then mv -f AGENTS.md.disabled AGENTS.md; fi
+	@if [ -f .kilo.jsonc.bak ]; then mv -f .kilo.jsonc.bak kilo.jsonc; fi
+	@if [ -f kilo.jsonc.disabled ]; then mv -f kilo.jsonc.disabled kilo.jsonc; fi
+	@if [ -f .kilo.json.bak ]; then mv -f .kilo.json.bak kilo.json; elif [ -f kilo.jsonc ] && [ ! -f kilo.json ]; then ln -sf kilo.jsonc kilo.json; fi
+	@if [ -d .agents.bak ]; then mv -f .agents.bak .agents; fi
+	@printf "\033[1;32m✅ État Démo 1 chargé : code initial, sous-dossiers datés supprimés dans plans/ (prêt pour nouveau plan) !\033[0m\n"
 demo-step-1 demo-step-start demo-step-reset: demo-step1
 
-demo-step2: ## Charge l'état Démo 2 (code initial en lecture seule pour cadrage)
+demo-step2: ## Charge l'état Démo 2 (code avec filtre, sous-dossier daté plans/2026-09-27-status-filter/ avec PLAN.md seul)
+	@if [ -f AGENTS.md.disabled ]; then mv AGENTS.md.disabled AGENTS.md; fi
+	@if [ -f kilo.jsonc.disabled ]; then mv kilo.jsonc.disabled kilo.jsonc; fi
+	@if [ -f kilo.jsonc ] && [ ! -f kilo.json ]; then ln -sf kilo.jsonc kilo.json; fi
 	@cp -f docs/demo-steps/step-2/app/* app/
 	@cp -f docs/demo-steps/step-2/tests/* tests/
 	@cp -f docs/demo-steps/step-2/docs/ARCHITECTURE.md docs/ARCHITECTURE.md 2>/dev/null || true
-	@printf "\033[1;32m✅ État Démo 2 chargé : prêt pour Cadrer & Planifier (skill plan-change) !\033[0m\n"
+	@rm -rf plans && mkdir -p plans
+	@cp -rf docs/demo-steps/step-2/plans/* plans/ 2>/dev/null || true
+	@printf "\033[1;32m✅ État Démo 2 chargé : sous-dossier plans/2026-09-27-status-filter/ initialisé avec PLAN.md seul !\033[0m\n"
 demo-step-2: demo-step2
 
-demo-step3: ## Charge l'état Démo 3 (code avec filtre status & 4 tests validés)
+demo-step3 demo-step-final: ## Charge l'état Démo 3 (code complet, sous-dossier plans/2026-09-27-status-filter/ avec PLAN, AVANCEMENT, REVIEW)
+	@if [ -f AGENTS.md.disabled ]; then mv AGENTS.md.disabled AGENTS.md; fi
+	@if [ -f kilo.jsonc.disabled ]; then mv kilo.jsonc.disabled kilo.jsonc; fi
+	@if [ -f kilo.jsonc ] && [ ! -f kilo.json ]; then ln -sf kilo.jsonc kilo.json; fi
 	@cp -f docs/demo-steps/step-3/app/* app/
 	@cp -f docs/demo-steps/step-3/tests/* tests/
 	@cp -f docs/demo-steps/step-3/docs/ARCHITECTURE.md docs/ARCHITECTURE.md 2>/dev/null || true
-	@printf "\033[1;32m✅ État Démo 3 chargé (filtre status & 4 tests) : prêt pour Implémenter le plan !\033[0m\n"
-demo-step-3: demo-step3
-
-demo-step4: ## Charge l'état Démo 4 (code complet + docs/ARCHITECTURE.md Mermaid)
-	@cp -f docs/demo-steps/step-4/app/* app/
-	@cp -f docs/demo-steps/step-4/tests/* tests/
-	@cp -f docs/demo-steps/step-4/docs/ARCHITECTURE.md docs/ARCHITECTURE.md 2>/dev/null || true
-	@printf "\033[1;32m✅ État Démo 4 chargé (code + doc ARCHITECTURE.md Mermaid) : prêt pour Documentation & MCP !\033[0m\n"
-demo-step-4 demo-step-restore demo-step-final: demo-step4
+	@rm -rf plans && mkdir -p plans
+	@cp -rf docs/demo-steps/step-3/plans/* plans/ 2>/dev/null || true
+	@printf "\033[1;32m✅ État Démo 3 chargé : plans/2026-09-27-status-filter/ complet (PLAN.md, AVANCEMENT.md, REVIEW.md) !\033[0m\n"
+demo-step-3 demo-step-restore: demo-step3
 
 
 

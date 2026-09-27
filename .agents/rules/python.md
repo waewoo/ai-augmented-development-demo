@@ -1,9 +1,13 @@
-# Qualité Python
+# Standards Python et Typage
 
-- Respecter Python 3.10 et les conventions PEP 8 applicables.
-- Utiliser `ruff format` pour le formatage et Ruff pour le linting.
-- Ajouter les annotations de type attendues par la configuration Mypy.
-- Ne pas utiliser `# noqa`, `type: ignore` ou des contournements de typage sans justification.
-- Réutiliser les dépendances existantes avant d’en proposer une nouvelle.
-- Toute nouvelle dépendance doit être justifiée, approuvée et déclarée dans `pyproject.toml`.
-- Utiliser FastAPI pour la couche HTTP, Pydantic pour les modèles et conserver la logique métier dans le service.
+- **Version et syntaxe moderne** :
+  - Cible Python 3.10+.
+  - Utiliser les opérateurs d'union PEP 604 (ex: `Type | None = None`) plutôt que `Optional[Type]`.
+- **Typage statique strict (Mypy)** :
+  - Annoter systématiquement toutes les fonctions (paramètres et type de retour).
+  - Interdiction d'utiliser `# type: ignore` ou des contournements de typage sans justification formelle.
+- **Linting et formatage (Ruff)** :
+  - Le code doit passer sans avertissement `ruff check .` et `ruff format --check .`.
+  - **Règle B008 (FastAPI)** : ne pas appeler de fonctions dans les valeurs par défaut des arguments d'endpoint (ex: éviter d'appeler `Query(...)` en valeur par défaut). Exploiter la déduction automatique de FastAPI pour les types scalaires optionnels ou utiliser `typing.Annotated`.
+- **Dépendances** :
+  - Aucune dépendance externe non déclarée dans `pyproject.toml`.

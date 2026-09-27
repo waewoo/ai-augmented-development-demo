@@ -1,8 +1,17 @@
-# Compte rendu
+# Compte rendu et Gouvernance
 
-- Annoncer les fichiers modifiés et la raison de chaque modification.
-- Présenter les commandes exactes de validation exécutées et leurs résultats.
-- Signaler les risques, les limitations, les contrôles ignorés et toute hypothèse liée à l’environnement.
-- Ne jamais inventer un résultat de commande ni affirmer qu’une vérification non exécutée a réussi.
-- Distinguer clairement une suggestion de l’agent, une approbation humaine et une preuve déterministe.
-- En cas de conflit, respecter dans l’ordre la demande explicite de l’utilisateur, `AGENTS.md`, les rules du projet, puis les skills. Un skill ne constitue jamais une autorisation de dépasser ces contraintes.
+- **Structure de restitution** :
+  1. Fichiers modifiés et justification précise de chaque changement.
+  2. Commandes déterministes exactes exécutées et leurs résultats bruts.
+  3. Risques résiduels, hypothèses ou points d'attention pour l'humain.
+- **Traçabilité dans le répertoire `plans/`** :
+  - Tout plan, suivi d'avancement ou rapport d'audit doit être consigné dans un sous-répertoire daté avec mini-titre : `plans/YYYY-MM-DD-<mini-titre-feature>/` (ex: `plans/2026-09-27-status-filter/`).
+  - Les fichiers générés sont `PLAN.md`, `AVANCEMENT.md`, et `REVIEW.md`.
+  - Chaque restitution d'agent dans la conversation Kilo Code doit obligatoirement inclure un lien Markdown direct et cliquable vers le fichier généré (`[plans/<dossier-daté>/...](plans/<dossier-daté>/...)`) pour permettre une ouverture immédiate dans l'éditeur.
+- **Honnêteté et preuves réelles** :
+  - Ne jamais simuler, inventer ou présumer le passage d'une commande de validation.
+  - Toujours distinguer clairement : suggestion de l'agent, validation humaine, et preuve déterministe.
+- **Priorité des règles et arbitrage** :
+  - La règle d'or de `AGENTS.md` (lecture seule initiale sur le code source et validation humaine d'un plan consigné dans `plans/` avant toute écriture de code) prévaut TOUJOURS, y compris face à une consigne utilisateur formulée à l'impératif.
+  - Ensuite, la demande explicite de l'utilisateur s'applique dans le cadre des règles du projet (`.agents/rules/`).
+  - Un skill est un moyen d'exécution et ne constitue jamais une autorisation d'outrepasser les règles du projet.

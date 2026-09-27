@@ -235,75 +235,9 @@ timer: countdown
 - Montrer l'avant/après : prompt verbeux répété à chaque message vs fichier `AGENTS.md` à la racine.
 - Rappeler l'organisation : convention `AGENTS.md` à la racine pour démarrer simplement, ou modularisé en répertoires de rules (`.agents/rules/`, `.kilo/rules/`, `.cursor/rules/`) pour les projets multi-stacks afin de cibler les règles sans saturer le contexte.
 
-➡️ **Transition :** « Voyons ce choc en direct : que se passe-t-il quand on lance un prompt avec vs sans AGENTS.md ? »
+➡️ **Transition :** « La rule fixe le cadre permanent. Mais pour savoir comment agir méthodiquement sur une tâche précise, il faut une méthode : le skill. »
 
 🛟 **Solution de secours :** Ouvrir `AGENTS.md` localement dans l'éditeur.
--->
-
----
-
-<div class="demo-slide demo-slide--with-code">
-  <DemoCue
-    number="1"
-    title="Le choc des Rules : Avec vs Sans AGENTS.md"
-    action="Même demande « Ajoute un filtre status » d'abord sans rules, puis avec rules"
-    target="Sans rules : dispersion et écriture aveugle · Avec rules : plan et cadre strict"
-    result="L'agent refuse d'écrire sans plan et préserve le comportement existant"
-    fallback="docs/demo-assets/demo1-secours-sans-rules.md · demo1-secours-avec-rules.md"
-    question="Sans consigne explicite sur notre stack, sur quoi l'agent se base-t-il pour coder ?"
-    answer="Ses probabilités par défaut : il risque d'importer une bibliothèque inattendue."
-  />
-
-  <div class="demo-code-banner">
-    <div class="code-banner-header">
-      <span class="code-banner-badge">FastAPI · app/main.py</span>
-    </div>
-
-````md magic-move {lines: true}
-```python
-# 1. Sans rules : écriture brute (pas de typage strict, rejet 422 ignoré)
-@app.get("/tasks")
-def get_tasks(status: str | None = None):
-    return [t for t in tasks if t["status"] == status]
-```
-```python
-# 2. Avec AGENTS.md : contrat TaskStatus, typage Query et 422 garanti
-@app.get("/tasks", response_model=list[Task])
-def get_tasks(
-    status: Annotated[TaskStatus | None, Query()] = None,
-) -> list[Task]:
-    return list_tasks(status)
-```
-````
-
-  </div>
-</div>
-
-<!--
-LIVE DEMO 1 (3 min)
-
-🎯 **Objectif :**
-- Démontrer l'impact immédiat de `AGENTS.md` par contraste direct : expliquer la dérive sans rules, puis observer en direct le refus de coder sans plan avec rules.
-
-❓ **Question salle (30s) :**
-- Poser : *« Sans consigne explicite sur notre stack, sur quoi l'agent se base-t-il pour coder ? »*
-- Révéler : ses probabilités par défaut (risque de bibliothèques non autorisées ou code non typé).
-
-🎬 **En direct dans Kilo Code :**
-0. **Préparation & tour d'horizon rapide du cockpit (30 secondes) :**
-   - S'assurer que le projet est en état initial avec `make demo-step1`.
-   - Situer les 3 espaces à l'écran : à gauche l'arborescence (`app/`, `tests/`, `AGENTS.md`), au centre le code et le terminal de commandes, à droite le panneau de chat de l'agent.
-   - Désamorcer l'effet produit : *« Nous utilisons ici Kilo Code, mais le principe est rigoureusement identique dans Cursor, Copilot ou Claude Code. »*
-1. **Évoquer la dérive sans rules (20s) :**
-   - Rappeler le magic-move de la slide 08 ou citer `docs/demo-assets/demo1-secours-sans-rules.md` : sans règle, l'agent part modifier 4 fichiers en vrac et prétend que tout marche.
-2. **Lancer avec AGENTS.md actif en direct :**
-   - Envoyer le prompt : *« Ajoute un filtre optionnel status sur GET /tasks. »*
-   - Observer l'agent lire les règles, refuser de toucher au code sans plan approuvé et rappeler la contrainte du HTTP 422 et de `make demo-check`.
-3. Conclure : *« Sans rules, l'IA est un stagiaire surpuissant mais imprévisible. Avec rules, elle devient un collaborateur discipliné. »*
-
-➡️ **Transition :** « La rule fixe le cadre. Voyons ce qui donne la méthode : le skill. »
-
-🛟 **Solution de secours :** Afficher `docs/demo-assets/demo1-secours-sans-rules.md` puis `docs/demo-assets/demo1-secours-avec-rules.md`.
 -->
 
 ---
@@ -312,7 +246,7 @@ LIVE DEMO 1 (3 min)
   <div class="slide-kicker">Skills</div>
   <h1 class="slide-title">Le skill : la méthode outillée de l’agent</h1>
   <SkillAnatomy />
-  <SlideFooter page="09" :minutes="2" :progress="50" />
+  <SlideFooter page="08" :minutes="2" :progress="44" />
 </div>
 
 <!--
@@ -330,7 +264,7 @@ LIVE DEMO 1 (3 min)
 - Souligner le double déclenchement : l'agent s'auto-déclenche grâce au matching sémantique de la description, ou l'humain l'invoque directement.
 - Poser la question au bas de la slide : un simple prompt est éphémère et incertain ; un skill est versionné, partagé en équipe et reproductible.
 
-➡️ **Transition :** « Voyons ce skill en action dans le code : ouvrons plan-change et lançons notre première demande. »
+➡️ **Transition :** « Voyons ce duo en action : ouvrons Kilo Code et observons comment la Rule et le Skill fonctionnent ensemble face à une demande brute ! »
 
 🛟 **Solution de secours :** Afficher directement les fichiers `.agents/skills/*/SKILL.md`.
 -->
@@ -339,37 +273,49 @@ LIVE DEMO 1 (3 min)
 
 <div class="demo-slide">
   <DemoCue
-    number="2"
-    title="Dans le ventre d'un Skill : anatomie & déclenchement"
-    action="Explorer .agents/skills/plan-change/SKILL.md et lancer une demande naturelle"
-    target="Frontmatter YAML, description pour le matching sémantique et procédure outillée"
-    result="L'agent sélectionne le skill approprié et suit la procédure sans inventer"
-    fallback="docs/demo-assets/demo2-secours-plan.md"
-    question="Comment le modèle sait-il quel skill activer face à une demande utilisateur ?"
-    answer="Il compare sémantiquement l'intention du prompt avec le champ description du YAML de chaque skill."
+    number="1"
+    title="Le duo Rules + Skills : du prompt brut au plan sous contrôle"
+    actionTag="01 · Déclencher"
+    actionHeading="Le prompt brut dans l'éditeur"
+    action="« Ajoute un filtre optionnel status sur GET /tasks. »"
+    targetTag="02 · Observer"
+    targetHeading="La Rule (AGENTS.md) + Le Skill (plan-change)"
+    target="La Rule interdit d'écrire sans validation. Le Skill cadre l'exploration en lecture seule."
+    resultTag="03 · Résultat"
+    resultHeading="Plan dans plans/ daté + Approbation"
+    result="L'agent bloque toute écriture sur le code source, consigne son plan dans plans/<date>-<feature>/PLAN.md avec lien cliquable et attend l'approbation humaine."
+    fallback="docs/demo-assets/demo1-secours-avec-rules.md · demo2-secours-plan.md"
+    question="Comment la Rule et le Skill se complètent-ils face au prompt ?"
+    answer="La Rule pose l'interdiction absolue de modifier le code sans plan ; le Skill fournit la méthode pour explorer et cadrer le besoin sans dériver."
   />
 </div>
 
 <!--
-LIVE DEMO 2 (3 min)
+LIVE DEMO 1 (3 min)
 
 🎯 **Objectif :**
-- Démystifier le skill : montrer son code source en Markdown et observer son déclenchement par matching sémantique de mots-clés.
+- Démontrer la puissance du duo Rules + Skills : un prompt direct « Ajoute un filtre » ne provoque aucune écriture sauvage. L'agent applique le cadre (lecture seule) et déroule immédiatement la méthode du skill `plan-change`.
 
 ❓ **Question salle (30s) :**
-- Poser : *« Comment le modèle sait-il quel skill activer face à une demande utilisateur ? »*
-- Révéler : il compare sémantiquement l'intention du prompt avec le champ `description:` du frontmatter YAML.
+- Poser : *« Comment la Rule et le Skill se complètent-ils face au prompt ? »*
+- Révéler : la Rule interdit l'écriture non contrôlée ; le Skill standardise la démarche de cadrage.
 
 🎬 **En direct dans Kilo Code :**
-1. Ouvrir `.agents/skills/plan-change/SKILL.md` :
-   - Pointer le frontmatter YAML : `name`, `description` (les mots-clés qui déclenchent le matching).
-   - Pointer la procédure étape par étape et le garde-fou strict (`ne modifier aucun fichier`).
-2. Saisir en langage naturel : *« Je voudrais préparer le plan pour ajouter un filtre status sur /tasks. »*
-3. Montrer l'agent qui annonce l'activation du skill `plan-change`, déroule la procédure et produit un plan d'action cadré.
+0. **Tour du cockpit rapide (20s) :**
+   - Montrer les 3 zones : à gauche les fichiers (`AGENTS.md`, `.agents/skills/`), au centre l'éditeur et le terminal, à droite le chat.
+   - Vérifier l'état initial : `make demo-step1`.
+1. **Lancer le prompt brut dans le chat :**
+   - Envoyer : *« Ajoute un filtre optionnel status sur GET /tasks. »*
+2. **Ce qu'on observe immédiatement :**
+   - **La Rule agit :** L'agent commence par *« The constitution requires read-only planning first »* et refuse de modifier le moindre fichier.
+   - **Le Skill agit :** L'agent active le skill `plan-change` et produit le plan complet (Compréhension, Critères, Fichiers, Tests, Risques).
+   - **L'Humain pilote :** L'agent s'arrête net et demande explicitement : *« Confirmez-vous l'approbation de ce plan ? »*.
+3. **À dire à la salle :**
+   - *« Regardez : une demande à l'impératif aurait suffi à faire coder n'importe quel assistant à l'aveugle. Ici, la Rule a bloqué l'écriture et le Skill a structuré le plan. L'humain reste le seul décideur. »*
 
 ➡️ **Transition :** « Nous avons un plan validé en lecture seule. Mais dès que l'agent va écrire du code, pourquoi ne doit-on jamais le croire sur parole ? »
 
-🛟 **Solution de secours :** Afficher directement `.agents/skills/plan-change/SKILL.md` et `docs/demo-assets/demo2-secours-plan.md`.
+🛟 **Solution de secours :** Projeter `docs/demo-assets/demo1-secours-avec-rules.md` et `docs/demo-assets/demo2-secours-plan.md`.
 -->
 
 ---
@@ -378,7 +324,7 @@ LIVE DEMO 2 (3 min)
   <div class="slide-kicker">Contrôles déterministes</div>
   <h1 class="slide-title">Ne faites pas confiance à l’agent. <span v-mark.underline.red="1">Vérifiez</span>.</h1>
   <DeterministicProof />
-  <SlideFooter page="11" :minutes="2" :progress="58" />
+  <SlideFooter page="10" :minutes="2" :progress="56" />
 </div>
 
 <!--
@@ -394,7 +340,7 @@ LIVE DEMO 2 (3 min)
 - Pointer le duel : affirmation textuelle non vérifiable vs preuves réelles (`make demo-check` vert + diff Git chirurgical).
 - Introduire l'exigence : *« Avant de livrer le moindre code, on exige une preuve binaire : 0 erreur, 100% vert. »*
 
-➡️ **Transition :** « Appliquons cette rigueur : demandons à l'agent d'implémenter le plan et vérifions son code avec nos tests ! »
+➡️ **Transition :** « Appliquons cette rigueur : nous approuvons le plan, demandons à l'agent de coder avec implement-change et vérifions avec nos tests ! »
 
 🛟 **Solution de secours :** S'appuyer sur `docs/demo-assets/demo4-secours-checks.md`.
 -->
@@ -403,7 +349,7 @@ LIVE DEMO 2 (3 min)
 
 <div class="demo-slide">
   <DemoCue
-    number="3"
+    number="2"
     title="De l’approbation au code : implémentation chirurgicale"
     actionTag="01 · Déclencher"
     actionHeading="Le prompt, dans l’éditeur"
@@ -421,7 +367,7 @@ LIVE DEMO 2 (3 min)
 </div>
 
 <!--
-LIVE DEMO 3 (4 min)
+LIVE DEMO 2 (4 min)
 
 🎯 **Objectif :**
 - Montrer l'agent qui passe de l'approbation humaine à l'implémentation chirurgicale avec `implement-change`, puis exécuter `make demo-check` dans le terminal.
@@ -449,7 +395,7 @@ LIVE DEMO 3 (4 min)
   <div class="slide-kicker">Écosystème & Outils</div>
   <h1 class="slide-title">Connecter l’agent au monde réel avec MCP</h1>
   <McpEcosystem />
-  <SlideFooter page="13" :minutes="2" :progress="68" />
+  <SlideFooter page="12" :minutes="2" :progress="67" />
 </div>
 
 <!--
@@ -475,7 +421,7 @@ LIVE DEMO 3 (4 min)
 
 <div class="demo-slide">
   <DemoCue
-    number="4"
+    number="3"
     title="Génération automatique de documentation via MCP"
     :minutes="4"
     action="Skill document-architecture &amp; Outil MCP confluence_update_page"
@@ -488,7 +434,7 @@ LIVE DEMO 3 (4 min)
 </div>
 
 <!--
-LIVE DEMO 4 (4 min)
+LIVE DEMO 3 (4 min)
 
 🎯 **Objectif :**
 - Montrer l'automatisation de la documentation vivante : l'agent met à jour la documentation d'architecture avec des schémas Mermaid et synchronise directement la page Confluence d'équipe via MCP.
@@ -508,7 +454,7 @@ LIVE DEMO 4 (4 min)
 
 ➡️ **Transition :** « Ce contrôle et cette intégration s'inscrivent dans un ensemble plus vaste : le harnais. »
 
-🛟 **Solution de secours :** Exécuter `make demo-step4` dans le terminal pour actualiser instantanément `docs/ARCHITECTURE.md` avec le diagramme Mermaid, et s'appuyer sur `docs/demo-assets/demo4-secours-confluence.md`.
+🛟 **Solution de secours :** Exécuter `make demo-step3` dans le terminal pour actualiser instantanément `docs/ARCHITECTURE.md` avec le diagramme Mermaid, et s'appuyer sur `docs/demo-assets/demo4-secours-confluence.md`.
 -->
 
 ---
@@ -517,7 +463,7 @@ LIVE DEMO 4 (4 min)
   <div class="slide-kicker">Harnais & Sécurité</div>
   <h1 class="slide-title">Le harnais relie capacités, limites et preuves</h1>
   <HarnessDiagram />
-  <SlideFooter page="15" :minutes="3" :progress="78" />
+  <SlideFooter page="14" :minutes="3" :progress="78" />
 </div>
 
 <!--
@@ -547,7 +493,7 @@ LIVE DEMO 4 (4 min)
 
   <PitfallsCards />
 
-  <SlideFooter page="16" :minutes="2" :progress="83" />
+  <SlideFooter page="15" :minutes="2" :progress="83" />
 </div>
 
 <!--
@@ -579,7 +525,7 @@ LIVE DEMO 4 (4 min)
 
   <ActionPlan />
 
-  <SlideFooter page="17" :minutes="2" :progress="89" />
+  <SlideFooter page="16" :minutes="2" :progress="89" />
 </div>
 
 <!--
@@ -615,7 +561,7 @@ LIVE DEMO 4 (4 min)
     <strong>Un skill ou serveur MCP externe peut contenir des instructions trompeuses ou des commandes dangereuses.</strong>
     <p>Toujours auditer le code et <code>SKILL.md</code> · tester en sandbox isolée · accorder le strict minimum de permissions.</p>
   </div>
-  <SlideFooter page="18" :minutes="1" :progress="95" />
+  <SlideFooter page="17" :minutes="1" :progress="95" />
 </div>
 
 <!--

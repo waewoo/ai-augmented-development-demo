@@ -1,6 +1,8 @@
-from fastapi import FastAPI
+from typing import Annotated
 
-from app.models import Task
+from fastapi import FastAPI, Query
+
+from app.models import Task, TaskStatus
 from app.service import list_tasks
 
 app = FastAPI(
@@ -11,5 +13,10 @@ app = FastAPI(
 
 
 @app.get("/tasks", response_model=list[Task])
-def get_tasks() -> list[Task]:
-    return list_tasks()
+def get_tasks(
+    status: Annotated[
+        TaskStatus | None,
+        Query(description="Optional task status filter."),
+    ] = None,
+) -> list[Task]:
+    return list_tasks(status)
