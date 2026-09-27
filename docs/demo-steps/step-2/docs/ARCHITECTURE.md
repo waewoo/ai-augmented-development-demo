@@ -1,6 +1,6 @@
 # Architecture logicielle & Flux de données (`ARCHITECTURE.md`)
 
-> **Note :** Ce document est maintenu automatiquement par le skill d'agent `.kilo/skills/document-architecture`.
+> **Note :** Ce document est maintenu automatiquement par le skill d'agent `.agents/skills/document-architecture`.
 
 ---
 

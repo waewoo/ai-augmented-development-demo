@@ -62,7 +62,7 @@ Puis ouvrir la documentation interactive : <http://127.0.0.1:8000/docs>.
 ```text
 .
 ├── .github/workflows/       CI GitHub Actions
-├── .kilo/                   rules et skills du projet
+├── .agents/                  rules et skills du projet
 ├── app/                     code de l’API FastAPI
 ├── tests/                   tests pytest
 ├── docs/                    documentation, fiches de démo et fichiers de secours
@@ -78,8 +78,8 @@ Puis ouvrir la documentation interactive : <http://127.0.0.1:8000/docs>.
 | Répertoire | Rôle | Contenu principal |
 | --- | --- | --- |
 | `.github/workflows/` | Automatisation distante | `ci.yml` installe le projet et exécute `make demo-check` sur les push et pull requests. |
-| `.kilo/rules/` | Instructions persistantes du projet | Architecture, tests, restitution et sécurité. Elles orientent l’agent mais ne remplacent ni les permissions ni la revue humaine. |
-| `.kilo/skills/` | Procédures réutilisables | `plan-change`, `implement-change`, `review-change` et `document-architecture`, chacun avec son `SKILL.md`. |
+| `.agents/rules/` | Instructions persistantes du projet | Architecture, tests, restitution et sécurité. Elles orientent l’agent mais ne remplacent ni les permissions ni la revue humaine. |
+| `.agents/skills/` | Procédures réutilisables | `plan-change`, `implement-change`, `review-change` et `document-architecture`, chacun avec son `SKILL.md`. |
 | `app/` | Application Python | `main.py` pour HTTP, `models.py` pour les types métier et `service.py` pour la sélection des tâches. |
 | `tests/` | Vérification automatisée | Tests API et non-régression exécutés par pytest. |
 | `docs/` | Documentation & Démos | Fiches de démo (`DEMOS.md`, `demo-1.md` à `demo-4.md`), architecture (`ARCHITECTURE.md`), ressources et fichiers de secours (`docs/demo-assets/`). |
@@ -87,7 +87,7 @@ Puis ouvrir la documentation interactive : <http://127.0.0.1:8000/docs>.
 
 ### Fichiers importants à la racine
 
-- [`kilo.jsonc`](kilo.jsonc) déclare les quatre rules et le répertoire des skills chargés par Kilo Code ;
+- [`kilo.jsonc`](kilo.jsonc) déclare les règles et le répertoire des skills (`.agents/`) chargés par Kilo Code ;
 - [`pyproject.toml`](pyproject.toml) décrit le paquet Python, ses dépendances et la configuration de pytest, Ruff et mypy ;
 - [`Makefile`](Makefile) fournit le point d’entrée commun pour les contrôles Python et les opérations Slidev ;
 - [`README.md`](README.md) donne la vue d’ensemble ; les explications opérationnelles détaillées vivent dans `docs/`.
@@ -237,7 +237,7 @@ Quelques choix sont intentionnels :
 - `docs/demo-assets/` est un nom adapté à des fixtures pédagogiques ; les renommer en `fixtures/` ferait perdre leur intention de secours de démonstration ;
 - `presentation/` possède son propre `package.json` et `package-lock.json`, car Slidev est un sous-projet Node autonome ;
 - les exports finaux sont suivis dans Git pour permettre une présentation sans régénération, même si les artefacts intermédiaires restent ignorés ;
-- `.kilo/` est spécifique à l’outil de démonstration et ne doit pas être confondu avec le code métier ;
+- `.agents/` héberge les règles et compétences réutilisables du projet, tandis que `.kilo/` est réservé aux artefacts d'exécution locaux ;
 - les caches Python et le répertoire `*.egg-info` sont locaux et ignorés, pas des éléments de l’architecture du projet.
 
 Pour une reproductibilité Python encore plus stricte dans une future évolution, un lockfile ou une stratégie de contraintes Python pourrait être ajouté. Ce n’est pas nécessaire pour le scénario actuel, qui fixe déjà les grandes bornes dans `pyproject.toml`.

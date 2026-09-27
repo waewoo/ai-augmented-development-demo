@@ -123,7 +123,7 @@ const promptIssues = [
         <div class="editor-statusbar">
           <span class="statusbar-badge">Convention</span>
           <span class="statusbar-text">
-            Fichier <code>AGENTS.md</code> à la racine, ou dossiers de rules (ex. <code>.kilo/rules/</code>, <code>.cursor/rules/</code>).
+            Fichier <code>AGENTS.md</code> à la racine, ou dossiers de rules (ex. <code>.agents/rules/</code>, <code>.cursor/rules/</code>).
           </span>
         </div>
       </div>

@@ -13,7 +13,7 @@
    make demo-step2
    ```
 2. S'assurer que le fichier [AGENTS.md](file:///home/coder/project/AGENTS.md) est bien présent à la racine.
-3. Ouvrir l'onglet [`.kilo/skills/plan-change/SKILL.md`](../.kilo/skills/plan-change/SKILL.md) dans l'éditeur.
+3. Ouvrir l'onglet [`.agents/skills/plan-change/SKILL.md`](../.agents/skills/plan-change/SKILL.md) dans l'éditeur.
 
 ---
 
@@ -54,4 +54,4 @@ Je voudrais préparer le plan pour ajouter un filtre optionnel status sur GET /t
 
 ## 🛟 Solution de secours (si l'IA est lente)
 
-Ouvrir directement [`.kilo/skills/plan-change/SKILL.md`](../.kilo/skills/plan-change/SKILL.md) puis [`docs/demo-assets/demo2-secours-plan.md`](demo-assets/demo2-secours-plan.md) pour projeter le plan attendu.
+Ouvrir directement [`.agents/skills/plan-change/SKILL.md`](../.agents/skills/plan-change/SKILL.md) puis [`docs/demo-assets/demo2-secours-plan.md`](demo-assets/demo2-secours-plan.md) pour projeter le plan attendu.

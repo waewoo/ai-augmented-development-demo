@@ -332,7 +332,7 @@ LIVE DEMO 1 (3 min)
 
 ➡️ **Transition :** « Voyons ce skill en action dans le code : ouvrons plan-change et lançons notre première demande. »
 
-🛟 **Solution de secours :** Afficher directement les fichiers `.kilo/skills/*/SKILL.md`.
+🛟 **Solution de secours :** Afficher directement les fichiers `.agents/skills/*/SKILL.md`.
 -->
 
 ---
@@ -361,7 +361,7 @@ LIVE DEMO 2 (3 min)
 - Révéler : il compare sémantiquement l'intention du prompt avec le champ `description:` du frontmatter YAML.
 
 🎬 **En direct dans Kilo Code :**
-1. Ouvrir `.kilo/skills/plan-change/SKILL.md` :
+1. Ouvrir `.agents/skills/plan-change/SKILL.md` :
    - Pointer le frontmatter YAML : `name`, `description` (les mots-clés qui déclenchent le matching).
    - Pointer la procédure étape par étape et le garde-fou strict (`ne modifier aucun fichier`).
 2. Saisir en langage naturel : *« Je voudrais préparer le plan pour ajouter un filtre status sur /tasks. »*
@@ -369,7 +369,7 @@ LIVE DEMO 2 (3 min)
 
 ➡️ **Transition :** « Nous avons un plan validé en lecture seule. Mais dès que l'agent va écrire du code, pourquoi ne doit-on jamais le croire sur parole ? »
 
-🛟 **Solution de secours :** Afficher directement `.kilo/skills/plan-change/SKILL.md` et `docs/demo-assets/demo2-secours-plan.md`.
+🛟 **Solution de secours :** Afficher directement `.agents/skills/plan-change/SKILL.md` et `docs/demo-assets/demo2-secours-plan.md`.
 -->
 
 ---

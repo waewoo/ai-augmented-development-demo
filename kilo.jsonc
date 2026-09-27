@@ -3,13 +3,13 @@
   // Project rules are explicit so the demo can show how durable instructions
   // are loaded by the current Kilo Code configuration format.
   "instructions": [
-    ".kilo/rules/architecture.md",
-    ".kilo/rules/testing.md",
-    ".kilo/rules/reporting.md",
-    ".kilo/rules/security.md",
-    ".kilo/rules/python.md"
+    ".agents/rules/architecture.md",
+    ".agents/rules/testing.md",
+    ".agents/rules/reporting.md",
+    ".agents/rules/security.md",
+    ".agents/rules/python.md"
   ],
   "skills": {
-    "paths": [".kilo/skills"]
+    "paths": [".agents/skills"]
   }
 }

@@ -10,7 +10,7 @@ Utiliser ce skill lorsqu’une demande doit être comprise et planifiée avant t
 ## Procédure
 
 1. Explorer la structure du dépôt et identifier les points d’entrée pertinents.
-2. Lire `AGENTS.md`, `kilo.jsonc` et les règles applicables dans `.kilo/rules/` avant de proposer une solution.
+2. Lire `AGENTS.md`, `kilo.jsonc` et les règles applicables dans `.agents/rules/` avant de proposer une solution.
 3. Lire l’implémentation existante et les tests qui encadrent la demande.
 4. Reformuler la demande en critères d’acceptation observables, y compris le comportement inchangé.
 5. Identifier le plus petit ensemble de fichiers susceptibles d’être modifiés.

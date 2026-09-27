@@ -28,7 +28,7 @@ Cette commande exécute :
 - **Gestion des erreurs** : Rejeter les entrées invalides avec le code HTTP approprié (`422 Unprocessable Entity`).
 - **Preuves réelles** : Ne jamais inventer une sortie de commande ou prétendre qu'un test est passé sans l'avoir réellement exécuté.
 
-## 4. Skills disponibles (`.kilo/skills/`)
+## 4. Skills disponibles (`.agents/skills/`)
 
 - `plan-change` : Explore le besoin et prépare un plan d'implémentation sans modifier de code.
 - `implement-change` : Applique le changement minimal approuvé et exécute les tests.

@@ -57,7 +57,7 @@ Chaque acte dispose de sa commande dédiée :
 3. **Préparer les onglets utiles dans l'IDE :**
    - Le présentoir de démo : [`docs/DEMOS.md`](DEMOS.md)
    - Le fichier de règles : [`AGENTS.md`](../AGENTS.md)
-   - L'exemple de skill : [`.kilo/skills/plan-change/SKILL.md`](../.kilo/skills/plan-change/SKILL.md)
+   - L'exemple de skill : [`.agents/skills/plan-change/SKILL.md`](../.agents/skills/plan-change/SKILL.md)
    - Le fichier cible de l'API : [`app/main.py`](../app/main.py)
 
 4. **Visibilité & confort :** Désactiver les notifications et agrandir la taille de police pour la projection.
