@@ -1,70 +1,44 @@
-# Fiche Démo 3 — Skill + MCP Confluence : documentation vivante
+# Fiche Démo 3 — De l'approbation au code : implémentation chirurgicale
 
-- **Slide associée :** Slide 11
+- **Slide associée :** Slide 12
 - **Durée cible :** 4 minutes
-- **Objectif :** Illustrer la connexion de l'agent aux outils de documentation d'entreprise (Confluence / Wiki) via MCP pour automatiser la génération d'une architecture vivante (schémas Mermaid, matrice des routes HTTP, modèles de données).
+- **Objectif :** Démontrer le passage du plan approuvé à l'écriture minimale de code avec le skill `implement-change`. L'agent modifie uniquement les fichiers prévus au plan (`app/service.py`, `app/main.py`), respecte `TaskStatus` et préserve les tests existants.
 
 ---
 
 ## 📋 Préparation avant de lancer
-1. Ouvrir l'éditeur sur le projet.
-2. Avoir l'onglet [docs/ARCHITECTURE.md](file:///home/coder/project/docs/ARCHITECTURE.md) prêt (avec l'extension Markdown Preview activée pour afficher les diagrammes Mermaid en direct).
-3. *(Pour la Phase B)* Vérifier que le serveur MCP Confluence d'entreprise est configuré et joignable.
+1. S'assurer que le plan de la Démo 2 a bien été généré et affiché à l'écran.
+2. Garder la conversation ouverte (ou en ouvrir une nouvelle en rappelant le plan approuvé).
+3. Avoir le fichier de secours [`docs/demo-assets/demo4-secours-diff.md`](demo-assets/demo4-secours-diff.md) sous la main.
 
 ---
 
-## ⚡ Phase A — Génération locale (testable maintenant)
+## ⚡ Déroulement de la démonstration
 
 ### 1. Copier/coller ce prompt dans le chat :
 ```text
-Utilise le skill document-architecture. Analyse le projet Python et mets à jour docs/ARCHITECTURE.md avec un schéma Mermaid et le dictionnaire des données. Ne touche à aucun fichier de code.
+J'approuve le plan. Utilise le skill implement-change pour implémenter le filtre status sur GET /tasks. Respecte TaskStatus, garantis le rejet 422 pour les statuts invalides et préserve le comportement sans filtre.
 ```
 
 ### 2. Ce qu'on observe à l'écran :
-- L'agent active le skill `document-architecture`.
-- Il lit l'arborescence et inspecte le code Python : `app/main.py`, `app/models.py`, `app/service.py`.
-- Il génère ou met à jour le fichier [docs/ARCHITECTURE.md](file:///home/coder/project/docs/ARCHITECTURE.md).
-- Il confirme qu'aucun fichier dans `app/` ou `tests/` n'a été altéré.
+1. **Écriture chirurgicale :**
+   - L'agent active le skill `implement-change`.
+   - Il applique une modification minimale sur `app/service.py` et `app/main.py`.
+   - Zéro dépendance externe ajoutée.
+2. **Preuve machine immédiate (Terminal) :**
+   - Lancer dans le terminal local :
+     ```bash
+     make demo-check
+     ```
+   - On observe les 4 tests `pytest` verts, `ruff` sans erreur et `mypy` strict validé.
+   - Message vert de conclusion : `✅ Tous les contrôles déterministes sont validés à 100% !`
+3. **Inspection du diff Git :**
+   - Un `git diff` rapide montre 5 lignes modifiées au total.
 
-### 3. Geste orateur — Projeter le rendu riche :
-Ouvrir la prévisualisation Markdown de `docs/ARCHITECTURE.md` et faire défiler :
-- **Le diagramme Mermaid interactif** : montrant le flux Client HTTP → FastAPI (`main.py`) → Validation Pydantic (`models.py`) → Service (`service.py`) → Stockage mémoire.
-- **La table des modèles** : description stricte des statuts (`todo`, `doing`, `done`).
-- **La matrice des endpoints** : routes, paramètres et codes HTTP (`200 OK`, `422 Unprocessable Entity`).
-- **La chaîne de vérification déterministe** : commande `make demo-check`.
-
----
-
-## ⚡ Phase B — Publication Confluence via MCP (intégration entreprise)
-
-> ℹ️ **Statut :** À finaliser avec la configuration MCP de l'entreprise. La Phase A doit être réalisée en premier — le contenu de `docs/ARCHITECTURE.md` sert de source pour la publication Confluence.
-
-### Prérequis
-- Serveur MCP Confluence configuré (URL, token d'accès, identifiant d'espace).
-- Le MCP doit exposer a minima les outils : `confluence_create_page` ou `confluence_update_page`.
-
-### Prompt à adapter (une fois le MCP opérationnel) :
-```text
-Le contenu de docs/ARCHITECTURE.md vient d'être mis à jour. Utilise le MCP Confluence pour publier ou mettre à jour la page "Architecture Technique" dans l'espace [ESPACE] avec ce contenu. Ne modifie aucun fichier local.
-```
-
-### Ce qu'on devra observer à l'écran :
-- L'agent appelle l'outil MCP Confluence (`confluence_update_page` ou équivalent).
-- Il confirme la publication avec l'URL de la page mise à jour.
-- `git status --short` reste vide : aucun fichier local modifié par l'étape Confluence.
-
-### Ce qu'il faut dire à la salle :
-> *« Tous les développeurs détestent rédiger et maintenir la documentation d'architecture. En couplant un agent avec un skill et le protocole MCP, la documentation devient vivante, visuelle et directement synchronisée avec la réalité du code — et publiée automatiquement dans votre wiki d'entreprise. »*
-
-### 🔧 À faire avant le jour J
-- [ ] Configurer le MCP Confluence dans l'IDE (URL + token).
-- [ ] Vérifier que l'agent peut appeler `confluence_update_page` sur un espace de test.
-- [ ] Adapter le prompt avec l'identifiant d'espace réel.
-- [ ] Tester la publication d'une page de test et vérifier le rendu Mermaid dans Confluence.
+### 3. Ce qu'il faut dire à la salle :
+> *« L'agent a produit son code en quelques secondes, dans un périmètre chirurgical dicté par le plan. Et comme on l'a vu sur la slide précédente : on ne le croit pas sur parole, on a immédiatement lancé make demo-check. C'est vert à 100 %. Maintenant que notre code local est solide, comment connecte-t-on l'agent à nos outils d'entreprise ? »*
 
 ---
 
 ## 🛟 Solution de secours (si l'IA est lente)
-Ouvrir directement le fichier [docs/ARCHITECTURE.md](file:///home/coder/project/docs/ARCHITECTURE.md) (ou la copie locale de secours [docs/demo-assets/demo3-secours-architecture.md](demo-assets/demo3-secours-architecture.md)) dans l'éditeur et afficher la prévisualisation Markdown avec le schéma Mermaid.
-
-
+Ouvrir directement [`docs/demo-assets/demo4-secours-diff.md`](demo-assets/demo4-secours-diff.md) et [`docs/demo-assets/demo4-secours-checks.md`](demo-assets/demo4-secours-checks.md).

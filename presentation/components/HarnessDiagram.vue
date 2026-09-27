@@ -83,7 +83,7 @@ const layers = [
               <span class="shield-dot shield-dot--box" /> <strong>Sandbox</strong>
             </div>
             <div class="shield-badge shield-badge--bottom">
-              <span class="shield-dot shield-dot--check" /> <strong>make demo-verify</strong>
+              <span class="shield-dot shield-dot--check" /> <strong>make demo-check</strong>
             </div>
 
             <!-- Central Agent Mascot Robot -->

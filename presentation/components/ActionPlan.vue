@@ -9,7 +9,7 @@ const steps = [
     bullets: [
       'Dans l’IDE : Cursor, Kilo Code ou Copilot Edits',
       'En terminal : Claude Code (CLI performante)',
-      'Sélectionner un modèle frontière (Claude 3.7, GPT-4o)',
+      'Sélectionner un modèle frontière (Claude 5.5, GPT-4o)',
     ],
   },
   {

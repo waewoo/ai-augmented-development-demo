@@ -1,13 +1,13 @@
 ---
 theme: default
 title: Premiers pas vers le développement augmenté par l’IA
-info: Une méthode concrète pour travailler avec des agents de code
+info: Une méthode concrète pour travailler avec des agents de développement
 colorSchema: light
 highlighter: shiki
 transition: slide-left
 mdc: true
 comark: true
-duration: 42min
+duration: 50min
 timer: countdown
 ---
 
@@ -83,7 +83,7 @@ timer: countdown
 
 <div class="slide-shell vocab-slide">
   <div class="slide-kicker">Vocabulaire &amp; Écosystème</div>
-  <h1 class="slide-title">Modèles (LLM), chats, assistants et agents CLI / IDE</h1>
+  <h1 class="slide-title">Modèles (LLM), chats, assistants et agents de développement</h1>
 
   <ModelClientMatrix />
 
@@ -94,18 +94,23 @@ timer: countdown
 ⏱️ **Durée :** 2 minutes
 
 🎯 **Message clé :**
-- Distinguer le modèle (LLM probabiliste) de l'agent outillé (client CLI/IDE avec accès machine).
+- Distinguer le modèle (LLM probabiliste) de l'agent outillé (accès machine et outils).
+- Comprendre les deux modes d'action d'un agent :
+  1. **Interactif (au fil du chat) :** dialogue pas-à-pas dans l'IDE ou le terminal avec validation humaine continue.
+  2. **Orchestré (workflow / DAG) :** pipeline automatisé (style Dagu, CI/CD) qui enchaîne les tâches bornées depuis un ticket jusqu'à la Pull Request.
 
 🗣️ **À dire :**
-> *« Claude 3.7 ou GPT-4o sont des cerveaux probabilistes ; l'agent, c'est l'outil qui leur donne les mains pour lire vos fichiers et lancer vos commandes. »*
+> *« Claude 5.5 ou GPT-4o sont des cerveaux probabilistes ; l'agent, c'est l'outil qui leur donne les mains pour lire vos fichiers et lancer vos commandes. Que ce soit en direct dans un chat d'IDE ou orchestré dans un pipeline automatisé type DAG, c'est cette boucle outillée qui fait la différence. »*
 
 ❓ **Question interactive (20s) :**
-- Poser la question au bas de la slide : *« À partir de quel moment une IA devient-elle un agent IA de dev ? »*
+- Poser la question au bas de la slide : *« À partir de quel moment une IA devient-elle un agent de dev IA ? »*
 - Cliquer pour révéler : **Quand le client lui donne des outils autorisés** : dépôt, terminal et commandes. Le modèle seul n’est pas un agent.
 
 🎬 **En direct :**
 - Parcourir le tableau : plus on descend, plus l'outil a du pouvoir d'action sur le projet.
-- C'est précisément pour cela qu'il faut un cadre strict (`AGENTS.md`, `make demo-verify`).
+- Souligner les deux incarnations : la conversation interactive (ce qu'on verra en démo) et le pipeline automatisé sans chat (industrialisation).
+- Rappeler la boucle de rétroaction : appel d'outil (lecture/commande) → observation du résultat → décision.
+- C'est précisément pour cela qu'il faut un cadre strict (`AGENTS.md`, `make demo-check`).
 
 ➡️ **Transition :** « Dès qu’un agent peut agir, faut-il toujours lui laisser coder au fil de la conversation ? »
 
@@ -228,7 +233,7 @@ timer: countdown
 
 🎬 **En direct :**
 - Montrer l'avant/après : prompt verbeux répété à chaque message vs fichier `AGENTS.md` à la racine.
-- Rappeler l'organisation : convention `AGENTS.md` à la racine, ou modularisé en répertoires de rules (ex: `.kilo/rules/`, `.cursor/rules/`) selon l'échelle du projet.
+- Rappeler l'organisation : convention `AGENTS.md` à la racine pour démarrer simplement, ou modularisé en répertoires de rules (`.agents/rules/`, `.kilo/rules/`, `.cursor/rules/`) pour les projets multi-stacks afin de cibler les règles sans saturer le contexte.
 
 ➡️ **Transition :** « Voyons ce choc en direct : que se passe-t-il quand on lance un prompt avec vs sans AGENTS.md ? »
 
@@ -278,18 +283,21 @@ def get_tasks(
 LIVE DEMO 1 (3 min)
 
 🎯 **Objectif :**
-- Démontrer l'impact immédiat de `AGENTS.md` par contraste direct : un prompt envoyé sans rules vs avec rules.
+- Démontrer l'impact immédiat de `AGENTS.md` par contraste direct : expliquer la dérive sans rules, puis observer en direct le refus de coder sans plan avec rules.
 
 ❓ **Question salle (30s) :**
 - Poser : *« Sans consigne explicite sur notre stack, sur quoi l'agent se base-t-il pour coder ? »*
 - Révéler : ses probabilités par défaut (risque de bibliothèques non autorisées ou code non typé).
 
 🎬 **En direct dans Kilo Code :**
-1. **Sans rules (renommer ou masquer AGENTS.md) :**
-   - Lancer : *« Ajoute un filtre optionnel status sur GET /tasks. »*
-   - Montrer l'agent qui modifie immédiatement 4 ou 5 fichiers, invente du code et prétend que tout marche.
-2. **Avec rules (restaurer AGENTS.md) :**
-   - Relancer le même prompt : l'agent lit les règles, refuse de toucher au code sans plan approuvé et rappelle la contrainte du HTTP 422.
+0. **Tour d'horizon rapide du cockpit (30 secondes) :**
+   - Situer les 3 espaces à l'écran : à gauche l'arborescence (`app/`, `tests/`, `AGENTS.md`), au centre le code et le terminal de commandes, à droite le panneau de chat de l'agent.
+   - Désamorcer l'effet produit : *« Nous utilisons ici Kilo Code, mais le principe est rigoureusement identique dans Cursor, Copilot ou Claude Code. »*
+1. **Évoquer la dérive sans rules (20s) :**
+   - Rappeler le magic-move de la slide 08 ou citer `docs/demo-assets/demo1-secours-sans-rules.md` : sans règle, l'agent part modifier 4 fichiers en vrac et prétend que tout marche.
+2. **Lancer avec AGENTS.md actif en direct :**
+   - Envoyer le prompt : *« Ajoute un filtre optionnel status sur GET /tasks. »*
+   - Observer l'agent lire les règles, refuser de toucher au code sans plan approuvé et rappeler la contrainte du HTTP 422 et de `make demo-check`.
 3. Conclure : *« Sans rules, l'IA est un stagiaire surpuissant mais imprévisible. Avec rules, elle devient un collaborateur discipliné. »*
 
 ➡️ **Transition :** « La rule fixe le cadre. Voyons ce qui donne la méthode : le skill. »
@@ -332,7 +340,7 @@ LIVE DEMO 1 (3 min)
   <DemoCue
     number="2"
     title="Dans le ventre d'un Skill : anatomie & déclenchement"
-    action="Explorer .kilo/skills/plan-change/SKILL.md et lancer une demande naturelle"
+    action="Explorer .agents/skills/plan-change/SKILL.md et lancer une demande naturelle"
     target="Frontmatter YAML, description pour le matching sémantique et procédure outillée"
     result="L'agent sélectionne le skill approprié et suit la procédure sans inventer"
     fallback="docs/demo-assets/demo2-secours-plan.md"
@@ -358,9 +366,80 @@ LIVE DEMO 2 (3 min)
 2. Saisir en langage naturel : *« Je voudrais préparer le plan pour ajouter un filtre status sur /tasks. »*
 3. Montrer l'agent qui annonce l'activation du skill `plan-change`, déroule la procédure et produit un plan d'action cadré.
 
-➡️ **Transition :** « Le skill cadre la méthode interne. Mais comment connecter l'agent à nos outils d'entreprise ? »
+➡️ **Transition :** « Nous avons un plan validé en lecture seule. Mais dès que l'agent va écrire du code, pourquoi ne doit-on jamais le croire sur parole ? »
 
 🛟 **Solution de secours :** Afficher directement `.kilo/skills/plan-change/SKILL.md` et `docs/demo-assets/demo2-secours-plan.md`.
+-->
+
+---
+
+<div class="slide-shell controls-slide">
+  <div class="slide-kicker">Contrôles déterministes</div>
+  <h1 class="slide-title">Ne faites pas confiance à l’agent. <span v-mark.underline.red="1">Vérifiez</span>.</h1>
+  <DeterministicProof />
+  <SlideFooter page="11" :minutes="2" :progress="58" />
+</div>
+
+<!--
+⏱️ **Durée :** 2 minutes
+
+🎯 **Message clé :**
+- L'agent souffre d'un biais de complaisance : il affirme toujours que tout marche. Seuls font foi les contrôles machine déterministes (`make demo-check`) et l'audit humain du diff Git.
+
+🗣️ **À dire :**
+> *« Quand un agent dit "J'ai tout terminé, les tests passent", c'est une affirmation probabiliste, pas une preuve. La seule autorité de vérité est la machine qui exécute make demo-check, et l'humain qui inspecte chaque ligne du diff ! »*
+
+🎬 **En direct :**
+- Pointer le duel : affirmation textuelle non vérifiable vs preuves réelles (`make demo-check` vert + diff Git chirurgical).
+- Introduire l'exigence : *« Avant de livrer le moindre code, on exige une preuve binaire : 0 erreur, 100% vert. »*
+
+➡️ **Transition :** « Appliquons cette rigueur : demandons à l'agent d'implémenter le plan et vérifions son code avec nos tests ! »
+
+🛟 **Solution de secours :** S'appuyer sur `docs/demo-assets/demo4-secours-checks.md`.
+-->
+
+---
+
+<div class="demo-slide">
+  <DemoCue
+    number="3"
+    title="De l’approbation au code : implémentation chirurgicale"
+    actionTag="01 · Déclencher"
+    actionHeading="Le prompt, dans l’éditeur"
+    action="« Utilise le skill implement-change. Applique le plan validé pour le filtre status sur GET /tasks. »"
+    targetTag="02 · Encadrer"
+    targetHeading="Périmètre strict autorisé"
+    target="app/service.py, app/main.py et tests/test_tasks.py. Aucune dépendance superflue. Respect du contrat TaskStatus."
+    resultTag="03 · Vérifier"
+    resultHeading="Code minimal produit"
+    result="L'agent applique le plan au millimètre, préserve le comportement sans filtre et lance make demo-check (100% vert)."
+    fallback="docs/demo-assets/demo4-secours-diff.md"
+    question="Pourquoi interdire à l'agent de modifier du code avant d'avoir un plan validé ?"
+    answer="Pour éviter le coût des modifications non convenues et garantir que le périmètre d'écriture reste strictement maîtrisé."
+  />
+</div>
+
+<!--
+LIVE DEMO 3 (4 min)
+
+🎯 **Objectif :**
+- Montrer l'agent qui passe de l'approbation humaine à l'implémentation chirurgicale avec `implement-change`, puis exécuter `make demo-check` dans le terminal.
+
+❓ **Question salle (30s) :**
+- Poser : *« Pourquoi interdire à l'agent de modifier du code avant d'avoir un plan validé ? »*
+- Révéler : pour éviter la dispersion, les dépendances superflues et garantir un périmètre minimal.
+
+🎬 **En direct dans Kilo Code :**
+1. Lancer le prompt : *« Utilise le skill implement-change. Applique le plan validé pour ajouter le filtre status sur GET /tasks. Respecte TaskStatus et préserve le comportement existant. »*
+2. Observer l'agent inspecter `app/service.py` et `app/main.py`, puis apporter la modification minimale.
+3. Ouvrir le terminal et lancer `make demo-check` sous les yeux de la salle :
+   - pytest : 4 tests verts
+   - ruff & mypy : 0 erreur
+4. Conclure : *« Le code local est validé par des preuves déterministes. »*
+
+➡️ **Transition :** « Notre code local est propre et testé. Mais une application d'entreprise ne vit pas en vase clos : comment connecter l'agent à nos outils comme Jira, Confluence ou GitLab ? »
+
+🛟 **Solution de secours :** Ouvrir directement `docs/demo-assets/demo4-secours-diff.md`.
 -->
 
 ---
@@ -369,7 +448,7 @@ LIVE DEMO 2 (3 min)
   <div class="slide-kicker">Écosystème & Outils</div>
   <h1 class="slide-title">Connecter l’agent au monde réel avec MCP</h1>
   <McpEcosystem />
-  <SlideFooter page="11" :minutes="2" :progress="63" />
+  <SlideFooter page="13" :minutes="2" :progress="68" />
 </div>
 
 <!--
@@ -383,143 +462,52 @@ LIVE DEMO 2 (3 min)
 
 🎬 **En direct :**
 - Présenter le concept : Model Context Protocol (standard ouvert initié par Anthropic, adopté par Cursor, Copilot, Kilo Code, Claude Code).
-- Parcourir les 4 cas d'usage concrets : Jira (spécifications), Confluence (ADRs), GitLab (logs CI), PostgreSQL (schémas réels).
+- Parcourir les 3 cas d'usage concrets : Jira (spécifications), Confluence (ADRs d'architecture), GitLab (logs de CI en échec).
 - **Insister sur la règle d'or :** Lecture Seule (Read-Only) par défaut. L'agent extrait l'information, l'humain valide toute modification.
 
-➡️ **Transition :** « Voyons cette connexion en direct : demandons à l'agent d'extraire l'architecture et de générer une documentation vivante pour notre wiki. »
+➡️ **Transition :** « Voyons ce connecteur MCP en action : demandons à l'agent de régénérer la documentation et de synchroniser Confluence en direct ! »
 
-🛟 **Solution de secours :** Commenter les 4 connecteurs affichés sur la slide.
+🛟 **Solution de secours :** Commenter les 3 connecteurs affichés sur la slide.
 -->
 
 ---
 
 <div class="demo-slide">
   <DemoCue
-    number="3"
-    title="Du code à la documentation, simplement — avec un skill et MCP"
-    actionTag="01 · Déclencher"
-    actionHeading="Le prompt, dans l’éditeur"
-    action="« Utilise document-architecture. Analyse le dépôt et propose la mise à jour de docs/ARCHITECTURE.md. »"
-    targetTag="02 · Encadrer"
-    targetHeading="Ce que l’agent peut consulter"
-    target="Le skill, AGENTS.md, app/main.py, app/models.py, app/service.py et les tests. MCP reste une passerelle optionnelle vers un wiki après validation."
-    resultTag="03 · Vérifier"
-    resultHeading="Le document produit"
-    result="ARCHITECTURE.md : schéma Mermaid, routes HTTP 200 / 422 et modèles Pydantic. On compare le document au code avant de le publier."
-    fallback="docs/demo-assets/demo3-secours-architecture.md"
-    question="Combien de temps faut-il pour qu’une doc devienne fausse ?"
-    answer="Parfois un seul commit suffit. Le workflow IA relit le code, prépare la mise à jour et peut la transmettre via MCP ; mais on relit toujours le document avant publication."
-  />
-</div>
-
-<!--
-LIVE DEMO 3 (4 min)
-
-🎯 **Objectif :**
-- Montrer un agent qui utilise le skill `document-architecture` pour transformer le code local en documentation vérifiable. MCP est présenté comme une passerelle facultative de publication vers un wiki, après validation.
-
-❓ **Question salle (30s) :**
-- Poser : *« Combien de temps faut-il pour qu’une doc devienne fausse ? »*
-- Révéler : parfois un seul commit suffit. Le workflow IA prépare la mise à jour depuis le code ; MCP peut ensuite la transmettre, mais le document est toujours relu avant publication.
-
-🎬 **En direct dans Kilo Code :**
-1. Lancer le prompt : *« Utilise le skill document-architecture. Analyse le projet Python et mets à jour docs/ARCHITECTURE.md avec un schéma Mermaid et le dictionnaire des données. »*
-2. Observer l'agent inspecter `app/main.py`, `app/models.py`, `app/service.py` et générer le document.
-3. Ouvrir la prévisualisation Markdown de `docs/ARCHITECTURE.md` dans l'éditeur :
-   - Montrer le rendu riche : badges, matrice des routes et codes retour HTTP (200, 422).
-   - Montrer le diagramme Mermaid interactif qui s'affiche sous les yeux du public.
-4. Conclure : *« L'IA accélère la documentation, mais le document reste vérifié contre le code avant toute publication sur un wiki. »*
-
-➡️ **Transition :** « La documentation est à jour. Mais pour le code, pourquoi ne doit-on jamais croire le résumé textuel de l'agent ? »
-
-🛟 **Solution de secours :** Ouvrir directement `docs/demo-assets/demo3-secours-architecture.md` (ou `docs/ARCHITECTURE.md`) déjà prêt dans l'éditeur.
--->
-
----
-
-<div class="slide-shell controls-slide">
-  <div class="slide-kicker">Contrôles déterministes</div>
-  <h1 class="slide-title">Ne faites pas confiance à l’agent. <span v-mark.underline.red="1">Vérifiez</span>.</h1>
-  <DeterministicProof />
-  <SlideFooter page="13" :minutes="2" :progress="67" />
-</div>
-
-<!--
-⏱️ **Durée :** 2 minutes
-
-🎯 **Message clé :**
-- L'agent souffre d'un biais de complaisance. Seuls font foi les contrôles machine déterministes et la séparation des pouvoirs (un agent qui code, un second agent qui audite).
-
-🗣️ **À dire :**
-> *« Quand un agent dit "J'ai tout terminé, les tests passent", c'est une affirmation probabiliste, pas une preuve. Pour auditer le code en toute neutralité, nous appliquons la séparation des pouvoirs : l'agent implémenteur propose, un second agent Reviewer audite impitoyablement ! »*
-
-🎬 **En direct :**
-- Pointer le duel : affirmation non vérifiable (hallucination) vs preuves réelles (`make demo-verify` vert + diff Git).
-- Introduire le principe du Reviewer : *« Tout comme on ne relit pas soi-même son propre code en entreprise, on délègue la revue à un second agent indépendant. »*
-
-➡️ **Transition :** « Voyons ce principe en direct : invoquons un agent Reviewer pour passer le diff au crible ! »
-
-🛟 **Solution de secours :** S'appuyer sur `docs/demo-assets/demo4-secours-checks.md`.
--->
-
----
-
-<div class="demo-slide demo-slide--with-code">
-  <DemoCue
     number="4"
-    title="L'Agent Reviewer : séparation des pouvoirs"
+    title="Génération automatique de documentation via MCP"
     :minutes="4"
-    action="Skill review-change · Audit impartial du diff Git de l'implémentation"
-    target="Conformité AGENTS.md, cas limites (HTTP 422), tests manquants et sévérité"
-    result="Rapport d'audit structuré (Bloquant / Important / Suggestion) avant décision humaine"
-    fallback="docs/demo-assets/demo4-secours-diff.md · docs/demo-assets/demo4-secours-review.md"
-    question="Pourquoi ne doit-on éviter de demander à l'agent qui a codé d'évaluer son propre travail ?"
-    answer="Par complaisance et biais de confirmation : un second agent auditeur garantit un examen neutre. Par 'agent' on entend une session de travail différente et idéalement avec un modèle de llm différent."
+    action="Skill document-architecture &amp; Outil MCP confluence_update_page"
+    target="docs/ARCHITECTURE.md (schéma Mermaid) et page Wiki Confluence"
+    result="Diagramme Mermaid régénéré et page Confluence mise à jour en direct sans quitter l'IDE"
+    fallback="docs/ARCHITECTURE.md · docs/demo-assets/demo4-secours-confluence.md"
+    question="Quel est le vrai pouvoir du protocole MCP pour votre équipe ?"
+    answer="Permettre à l'agent d'agir sur l'écosystème d'entreprise (Confluence, Jira, GitLab) de façon sécurisée et standardisée, sans copier-coller ni token en clair."
   />
-
-  <div class="demo-code-banner">
-    <div class="code-banner-header">
-      <span class="code-banner-badge">Diff Git · app/service.py</span>
-      <span class="code-banner-hint">Revue impartiale du diff par le second agent</span>
-    </div>
-
-```python {monaco-diff}
-# app/service.py (existant)
-def list_tasks() -> list[Task]:
-    return TASKS.copy()
-~~~
-# app/service.py (après revue)
-def list_tasks(status: TaskStatus | None = None) -> list[Task]:
-    if status is None:
-        return TASKS.copy()
-    return [task for task in TASKS if task.status == status]
-```
-
-  </div>
 </div>
 
 <!--
 LIVE DEMO 4 (4 min)
 
 🎯 **Objectif :**
-- Montrer la collaboration et la séparation des pouvoirs : un agent implémente, un second agent (Reviewer) audite le diff de façon critique.
+- Montrer l'automatisation de la documentation vivante : l'agent met à jour la documentation d'architecture avec des schémas Mermaid et synchronise directement la page Confluence d'équipe via MCP.
 
 ❓ **Question salle (30s) :**
-- Poser : *« Pourquoi ne doit-on jamais demander à l'agent qui a codé d'évaluer son propre travail ? »*
-- Révéler : complaisance, confirmation de biais et cécité aux effets de bord.
+- Poser : *« Quel est le vrai pouvoir du protocole MCP pour votre équipe ? »*
+- Révéler : connecter l'agent à tout l'écosystème (Confluence, Jira, GitLab) de façon sécurisée, sans copier-coller ni scripts sur-mesure.
 
 🎬 **En direct dans Kilo Code :**
-1. Rappeler que l'implémentation minimale du filtre `status` a été proposée.
-2. Invoquer le skill de revue : *« Utilise le skill review-change. Compare la demande, le plan, AGENTS.md, le diff Git et les résultats des tests. »*
-3. Montrer le rapport d'audit impartial généré par l'agent Reviewer :
-   - Vérification du respect d'`AGENTS.md` (aucun fichier hors périmètre).
-   - Contrôle du rejet HTTP 422 pour les statuts inconnus.
-   - Classification par sévérité : *[BLOQUANT]*, *[IMPORTANT]*, *[SUGGESTION]*.
-4. Conclure : *« L'humain ne lit pas 500 lignes de bavardage : il lit un rapport d'audit structuré et valide la Merge Request en confiance. »*
+1. Lancer le prompt dans le chat :
+   > *« Le code et les tests sont validés. Utilise le skill document-architecture pour mettre à jour docs/ARCHITECTURE.md avec les nouveaux diagrammes Mermaid. Puis utilise le serveur MCP Confluence pour synchroniser la page d'architecture de l'espace TECH. »*
+2. Montrer `docs/ARCHITECTURE.md` régénéré avec le schéma Mermaid montrant le filtre `status`.
+3. Montrer l'appel de l'outil MCP `confluence_update_page` par l'agent.
+4. Montrer la confirmation avec le lien de la page Confluence mise à jour.
+5. Conclure sur le gain de productivité :
+   > *« Maintenir la documentation technique à jour est une tâche indispensable mais souvent délaissée. Grâce aux skills et à MCP, votre documentation devient vivante, visuelle et directement synchronisée avec la réalité du code. »*
 
-➡️ **Transition :** « Ce contrôle par séparation des pouvoirs s’inscrit dans un ensemble plus vaste : le harnais. »
+➡️ **Transition :** « Ce contrôle et cette intégration s'inscrivent dans un ensemble plus vaste : le harnais. »
 
-🛟 **Solution de secours :** Afficher `docs/demo-assets/demo4-secours-diff.md` et `docs/demo-assets/demo4-secours-checks.md`.
+🛟 **Solution de secours :** Ouvrir `docs/ARCHITECTURE.md` dans l'IDE pour afficher le rendu Mermaid, et s'appuyer sur `docs/demo-assets/demo4-secours-confluence.md`.
 -->
 
 ---
@@ -590,19 +578,6 @@ LIVE DEMO 4 (4 min)
 
   <ActionPlan />
 
-::code-group
-```bash [Claude Code]
-claude "Explore ce dépôt en lecture seule. Résume l'architecture et propose un plan."
-```
-```bash [Cursor & Kilo]
-# Prompt avec @AGENTS.md :
-# "Explore ce dépôt en lecture seule et propose un plan pour le filtre status"
-```
-```bash [Validation make]
-make demo-check
-```
-::
-
   <SlideFooter page="17" :minutes="2" :progress="89" />
 </div>
 
@@ -630,35 +605,14 @@ make demo-check
 
 <div class="slide-shell resources-slide">
   <div class="slide-kicker">Pour continuer</div>
-  <h1 class="slide-title">Passer de l’initiation à la pratique</h1>
-  <div class="resources-layout">
-    <div class="resources-links">
-      <a href="#formation" class="resource-card resource-card--featured">
-        <span>Atelier guidé</span>
-        <strong>Parcours de formation interne (Pratique)</strong>
-        <small>Ateliers avec formateur · Cas réels d'entreprise &amp; industrialisation</small>
-      </a>
-      <a href="#formation" class="resource-card resource-card--featured">
-        <span>Ressources pratiques</span>
-        <strong>Exemples, règles et prompts reproductibles</strong>
-        <small>Pour expérimenter avec les outils approuvés par votre organisation</small>
-      </a>
-      <a href="https://github.com/agentskills/agentskills" target="_blank" class="resource-card">
-        <span>Standard ouvert</span>
-        <strong>Spécification ouverte Agent Skills</strong>
-        <small>github.com/agentskills/agentskills</small>
-      </a>
-      <a href="https://github.com/github/awesome-copilot" target="_blank" class="resource-card">
-        <span>Frameworks & Communauté</span>
-        <strong>Spec Kit, OpenSpec, BMAD & Awesome Copilot</strong>
-        <small>Démarches d'équipe pour cadrer à l'échelle</small>
-      </a>
-    </div>
-  </div>
+  <h1 class="slide-title">Standards, références et passage à la pratique</h1>
+
+  <ResourcesTable />
+
   <div class="supply-warning">
-    <span>Avant d’installer</span>
+    <span>Sécurité supply chain</span>
     <strong>Un skill ou serveur MCP externe peut contenir des instructions trompeuses ou des commandes dangereuses.</strong>
-    <p>Lire <code>SKILL.md</code>, scripts et dépendances · vérifier origine et version · tester en environnement isolé · accorder le strict minimum de permissions.</p>
+    <p>Toujours auditer le code et <code>SKILL.md</code> · tester en sandbox isolée · accorder le strict minimum de permissions.</p>
   </div>
   <SlideFooter page="18" :minutes="1" :progress="95" />
 </div>
@@ -667,15 +621,20 @@ make demo-check
 ⏱️ **Durée :** 1 minute
 
 🎯 **Message clé :**
-- Passer de la découverte à la pratique accompagnée, tout en restant vigilant sur la sécurité de la supply chain.
+- S'appuyer sur les vrais standards ouverts (MCP, Agent Skills) et la formation interne plutôt que des recettes propriétaires ou non standardisées.
 
 🗣️ **À dire :**
-> *« Pour pratiquer par vous-mêmes, utilisez les exemples et ressources du dépôt. Et pour votre équipe, nous proposons un parcours de formation dédié. »*
+> *« Pour continuer après cette session : inscrivez-vous au parcours de formation interne sur vos vrais projets d'équipe. Côté écosystème, privilégiez toujours les standards ouverts comme le protocole MCP et Agent Skills, et soyez intraitables sur la sécurité des composants tiers. »*
+
+⚠️ **Disclaimer à préciser explicitement à l'oral :**
+> *« Note importante : les frameworks de workflows cités (Spec Kit, AIDD, BMAD) sont partagés ici à titre d'exemples et d'illustrations de l'état de l'art pour structurer un cycle de dev. Ce ne sont en aucun cas des recommandations officielles ou obligatoires de BNP Paribas. Chaque équipe applique la gouvernance et les outils validés en interne. »*
 
 🎬 **En direct :**
-- **Atelier guidé :** Parcours de formation interne (cas réels, accompagnement).
-- **Ressources pratiques :** Exemples, règles et prompts reproductibles du dépôt.
-- **Alerte sécurité :** Ne jamais installer un skill ou serveur MCP tiers les yeux fermés. Toujours auditer le code et limiter les permissions.
+- **Formation interne :** Pointer la première ligne vers le portail interne d'entreprise.
+- **Standards ouverts :** Souligner MCP (standard d'interconnexion Linux Foundation) et Agent Skills (format ouvert).
+- **Conventions :** Rappeler les conventions de règles projet (`AGENTS.md`) versionnées dans Git.
+- **Workflows structurés :** Montrer les 3 exemples (Spec Kit, AIDD, BMAD) avec le rappel du disclaimer BNP.
+- **Sécurité :** Citer le référentiel OWASP et rappeler la règle d'or (ne jamais importer un MCP/Skill sans audit).
 
 ➡️ **Transition :** Passer la parole pour la présentation du cursus formation, puis ouvrir la séance de questions/réponses.
 

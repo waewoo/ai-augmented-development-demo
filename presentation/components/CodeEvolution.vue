@@ -117,7 +117,7 @@
     <!-- Global Takeaway -->
     <footer class="trace-takeaway">
       <span class="trace-takeaway__tag">Preuve globale</span>
-      <strong><code>make demo-verify</code> valide les 4 tests, le typage strict (Mypy) et le formatage (Ruff) : aucune confiance aveugle.</strong>
+      <strong><code>make demo-check</code> valide les 4 tests, le typage strict (Mypy) et le formatage (Ruff) : aucune confiance aveugle.</strong>
     </footer>
   </div>
 </template>

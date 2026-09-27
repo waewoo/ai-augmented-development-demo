@@ -1,6 +1,6 @@
 # Fiche Démo 2 — Dans le ventre d'un Skill : anatomie & déclenchement
 
-- **Slide associée :** Slide 09
+- **Slide associée :** Slide 10
 - **Durée cible :** 3 minutes
 - **Objectif :** Démystifier ce qu'est un skill (un simple fichier Markdown standard) et montrer comment l'agent le déclenche automatiquement par analyse sémantique de l'intention utilisateur.
 

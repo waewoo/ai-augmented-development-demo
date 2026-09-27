@@ -2,7 +2,7 @@
 const connectors = [
   {
     tag: 'JIRA',
-    name: 'Jira / Linear',
+    name: 'Jira',
     role: 'Spécifications & User Stories',
     server: 'mcp-server-jira',
     color: 'blue',
@@ -13,7 +13,7 @@ const connectors = [
   },
   {
     tag: 'DOCS',
-    name: 'Confluence / Notion',
+    name: 'Confluence',
     role: 'Architecture & Chartes internes',
     server: 'mcp-server-confluence',
     color: 'emerald',
@@ -24,24 +24,13 @@ const connectors = [
   },
   {
     tag: 'GIT',
-    name: 'GitLab / GitHub',
+    name: 'GitLab',
     role: 'CI/CD & Merge Requests',
     server: 'mcp-server-gitlab',
     color: 'amber',
     bullets: [
       'Récupère les logs du job CI en échec pour comprendre la panne',
       'Prépare le résumé de la Merge Request aligné sur le diff Git',
-    ],
-  },
-  {
-    tag: 'DATA',
-    name: 'PostgreSQL / Logs',
-    role: 'Schémas & Observabilité',
-    server: 'mcp-server-postgres',
-    color: 'indigo',
-    bullets: [
-      'Inspecte les tables et types réels de la base de données',
-      'Vérifie la compatibilité des migrations sans deviner le schéma',
     ],
   },
 ]
@@ -161,7 +150,7 @@ const connectors = [
 .connectors-grid {
   display: grid;
   gap: 12px;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
 }
 
 .connector-card {

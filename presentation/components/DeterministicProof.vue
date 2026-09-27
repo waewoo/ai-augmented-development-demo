@@ -44,7 +44,7 @@
               <span class="dot dot--yellow" />
               <span class="dot dot--green" />
             </div>
-            <span class="terminal-title">terminal · make demo-verify</span>
+            <span class="terminal-title">terminal · make demo-check</span>
             <span class="terminal-badge">Exit 0</span>
           </div>
           <div class="terminal-body">
@@ -85,7 +85,7 @@
       <div class="tier-pill tier-pill--manual">
         <span class="tier-icon">💻</span>
         <strong>Manuel</strong>
-        <small>Terminal / make demo-verify</small>
+        <small>Terminal / make demo-check</small>
       </div>
       <span class="tier-arrow">➔</span>
       <div class="tier-pill tier-pill--hook">

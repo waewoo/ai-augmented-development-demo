@@ -5,7 +5,7 @@ const items = [
     type: 'Modèle (LLM)',
     tagClass: 'badge--model',
     desc: 'Cerveau probabiliste : prédit du texte et génère du code.',
-    examples: 'Claude 3.7 Sonnet · GPT-4o · Llama 3',
+    examples: 'Qwen 3.8, Claude 5.5 Opus · GLM 5.3',
     access: 'Aucun accès direct',
     accessSub: 'Ne lit ni n’exécute rien seul',
     icon: '🧠',
@@ -31,13 +31,13 @@ const items = [
     icon: '✨',
   },
   {
-    category: 'CLI ou IDE',
-    type: 'Agent de code',
+    category: 'CLI, IDE ou Workflow',
+    type: 'Agent de développement',
     tagClass: 'badge--agent',
     desc: 'Client outillé : explore, planifie, modifie et exécute.',
-    examples: 'Claude Code (CLI) · Cursor · IBM Bob · Kilo Code',
+    examples: 'Open Code · Kilo Code · Claude Code . Codex . Workflows / DAGs',
     access: 'Tout le dépôt + terminal',
-    accessSub: 'Boucle autonome : édition et tests',
+    accessSub: 'Session interactive ou pipeline automatisé',
     icon: '⚡',
   },
 ]
@@ -57,7 +57,7 @@ const items = [
         v-for="item in items"
         :key="item.type"
         class="matrix-row"
-        :class="{ 'matrix-row--agent': item.category === 'CLI ou IDE' }"
+        :class="{ 'matrix-row--agent': item.tagClass === 'badge--agent' }"
       >
         <div class="col-type">
           <span class="row-icon">{{ item.icon }}</span>
@@ -76,7 +76,7 @@ const items = [
         </div>
 
         <div class="col-access">
-          <span class="access-pill" :class="{ 'access-pill--agent': item.category === 'CLI ou IDE' }">
+          <span class="access-pill" :class="{ 'access-pill--agent': item.tagClass === 'badge--agent' }">
             {{ item.access }}
           </span>
           <small class="access-sub">{{ item.accessSub }}</small>
