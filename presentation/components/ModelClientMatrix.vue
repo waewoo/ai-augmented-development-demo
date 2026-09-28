@@ -5,7 +5,7 @@ const items = [
     type: 'Modèle (LLM)',
     tagClass: 'badge--model',
     desc: 'Cerveau probabiliste : prédit du texte et génère du code.',
-    examples: 'Qwen 3.8, Claude 5.5 Opus · GLM 5.3',
+    examples: 'Claude 3.5 Sonnet · GPT-4o · Mistral Large',
     access: 'Aucun accès direct',
     accessSub: 'Ne lit ni n’exécute rien seul',
     icon: '🧠',
@@ -84,6 +84,14 @@ const items = [
       </div>
     </div>
 
+    <!-- Autonomy Compass Banner to fill space with valuable insight -->
+    <div class="matrix-compass-banner">
+      <span class="compass-pill">Boussole d’autonomie</span>
+      <p>
+        <strong>Règle d’équipe :</strong> Plus l’outil a de pouvoir sur le système (fichiers, terminal, commandes), plus le <u>harnais de vérification déterministe</u> doit être strict.
+      </p>
+    </div>
+
     <!-- Interactive question footer -->
     <SlideQuestion
       variant="emerald"
@@ -98,15 +106,15 @@ const items = [
 .matrix-wrapper {
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  margin-top: 8px;
+  gap: 6px;
+  margin-top: 4px;
   width: 100%;
 }
 
 .matrix-table {
   background: var(--surface);
   border: 1px solid var(--line);
-  border-radius: 14px;
+  border-radius: 12px;
   box-shadow: 0 4px 14px rgba(15, 23, 42, 0.04);
   display: flex;
   flex-direction: column;
@@ -125,12 +133,12 @@ const items = [
   border-bottom: 1px solid var(--line);
   color: #64748b;
   display: grid;
-  font-size: 11px;
+  font-size: 10.5px;
   font-weight: 750;
   gap: 14px;
   grid-template-columns: 200px 1.2fr 1.3fr 1fr;
   letter-spacing: 0.06em;
-  padding: 6px 16px;
+  padding: 5px 16px;
   text-transform: uppercase;
 }
 
@@ -140,7 +148,8 @@ const items = [
   display: grid;
   gap: 14px;
   grid-template-columns: 200px 1.2fr 1.3fr 1fr;
-  padding: 7px 16px;
+  min-height: 40px;
+  padding: 5px 16px;
   transition: background 0.15s ease;
 }
 
@@ -258,47 +267,39 @@ const items = [
   font-size: 10.5px;
 }
 
-/* Takeaway Banner */
-.matrix-takeaway {
+/* Autonomy Compass Banner */
+.matrix-compass-banner {
   align-items: center;
   background: #f0fdf4;
   border: 1px solid #bbf7d0;
   border-left: 4px solid var(--teal);
-  border-radius: 10px;
-  box-shadow: 0 2px 8px rgba(0, 135, 90, 0.05);
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 135, 90, 0.04);
   display: flex;
-  gap: 14px;
-  padding: 8px 16px;
-  transition: all 0.15s ease;
+  gap: 10px;
+  padding: 5px 14px;
 }
 
-.matrix-takeaway:hover {
-  border-color: #86efac;
-  border-left-color: var(--teal);
-  box-shadow: 0 6px 18px rgba(0, 135, 90, 0.08);
-  transform: translateY(-1px);
-}
-
-.takeaway-badge {
-  background: #00875a;
+.compass-pill {
+  background: var(--teal);
   border-radius: 999px;
   color: #ffffff;
-  font-size: 10.5px;
+  font-size: 9.5px;
   font-weight: 800;
   letter-spacing: 0.06em;
-  padding: 3px 10px;
+  padding: 2px 8px;
   text-transform: uppercase;
   white-space: nowrap;
 }
 
-.matrix-takeaway p {
+.matrix-compass-banner p {
   color: #1e293b;
-  font-size: 12px;
-  line-height: 1.35;
+  font-size: 11.5px;
+  line-height: 1.3;
   margin: 0;
 }
 
-.matrix-takeaway strong {
-  color: #0f172a;
+.matrix-compass-banner strong {
+  color: #065f46;
 }
 </style>

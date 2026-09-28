@@ -1,7 +1,7 @@
 # 🎬 Guide & Conducteur Complet des Démonstrations en Direct (`DEMOS.md`)
 
 > **Fiche unique de référence pour l'orateur**  
-> Ce document rassemble l'intégralité du scénario des démonstrations en direct réparties sur les 18 slides de la présentation (42 minutes), les commandes de bascule déterministes, les options en direct (*avec vs sans rules*), et la gestion des imprévus.  
+> Ce document rassemble l'intégralité du scénario des démonstrations en direct réparties sur les 17 slides de la présentation (45 minutes d'exposé/démos + 15 min échanges), les commandes de bascule déterministes, les options en direct (*avec vs sans rules*), et la gestion des imprévus.  
 > **Un seul onglet à garder ouvert à côté de votre IDE.**
 
 ---
@@ -11,18 +11,18 @@
 1. [⚡ Les Commandes Clés du Makefile](#commandes-makefile)
 2. [📋 Préparation avant la session (2 minutes)](#preparation-session)
 3. [🧭 Étape 0 — Le "Tour du cockpit" de l'IDE (30 s)](#cockpit)
-4. [🟢 ACTE 1 (Slide 09) — Le duo Rules + Skills : Cadrer & Planifier (3 min)](#acte-1)
+4. [🟢 ACTE 1 (Slide 06) — Le duo Rules + Skills : Cadrer & Planifier (4 min)](#acte-1)
    - [Option A — Le Choc en direct (Sans Rules puis Avec Rules)](#acte-1-option-a)
    - [Option B — L'Option Express (Alternative 45 s)](#acte-1-option-b)
    - [Ce qu'on observe à l'écran](#acte-1-obs)
    - [Ce qu'il faut dire à la salle](#acte-1-talk)
    - [Solutions de secours](#acte-1-secours)
-5. [🟠 ACTE 2 (Slide 11) — De l'approbation au code : Implémentation chirurgicale (4 min)](#acte-2)
+5. [🟠 ACTE 2 (Slide 10) — De l'approbation au code : Implémentation chirurgicale (4 min 30)](#acte-2)
    - [Le prompt d'approbation](#acte-2-prompt)
    - [Vérification déterministe par la machine](#acte-2-check)
    - [Ce qu'il faut dire à la salle](#acte-2-talk)
    - [Solution de secours rapide](#acte-2-secours)
-6. [🟣 ACTE 3 (Slide 13) — Documentation vivante & Synchronisation Confluence via MCP (4 min)](#acte-3)
+6. [🟣 ACTE 3 (Slide 12) — Documentation vivante & Synchronisation Confluence via MCP (4 min 30)](#acte-3)
    - [Le prompt d'actualisation et sync](#acte-3-prompt)
    - [Ce qu'on observe à l'écran](#acte-3-obs)
    - [Ce qu'il faut dire à la salle](#acte-3-talk)
@@ -96,11 +96,11 @@ Pendant la présentation, restez sur votre session habituelle : **aucun switch G
 
 ================================================================================
 <a id="acte-1"></a>
-# 🟢 ACTE 1 (Slide 09) — Le duo Rules + Skills : Cadrer & Planifier
+# 🟢 ACTE 1 (Slide 06) — Le duo Rules + Skills : Cadrer & Planifier
 ================================================================================
 
-- **Slide associée :** Slide 09
-- **Durée cible :** 3 minutes
+- **Slide associée :** Slide 06 (minute 8m30 à 12m30)
+- **Durée cible :** 4 minutes
 - **Objectif :** Démontrer l'impact immédiat du duo Rules + Skills face à un prompt direct et impératif : l'agent refuse d'écrire du code à l'aveugle grâce à `AGENTS.md` (la Rule), active le skill `plan-change` (le Skill) et produit un plan de cadrage rigoureux en demandant l'approbation humaine.
 
 ---
@@ -164,11 +164,11 @@ Si vous manquez de temps pour le va-et-vient, projetez en 10 secondes le fichier
 
 ================================================================================
 <a id="acte-2"></a>
-# 🟠 ACTE 2 (Slide 11) — De l'approbation au code : Implémentation chirurgicale
+# 🟠 ACTE 2 (Slide 10) — De l'approbation au code : Implémentation chirurgicale
 ================================================================================
 
-- **Slide associée :** Slide 11
-- **Durée cible :** 4 minutes
+- **Slide associée :** Slide 10 (minute 18m30 à 23m00)
+- **Durée cible :** 4 minutes 30
 - **Objectif :** Démontrer le passage du plan approuvé à l'écriture minimale de code avec le skill `implement-change`. L'agent modifie uniquement le périmètre convenu, consigne son suivi dans `plans/2026-09-27-status-filter/AVANCEMENT.md`, puis on valide immédiatement le résultat avec l'oracle déterministe (`make demo-check`).
 
 ### 1. Préparation
@@ -222,11 +222,11 @@ Fichiers d'inspection statique : [`docs/demo-assets/demo4-secours-diff.md`](demo
 
 ================================================================================
 <a id="acte-3"></a>
-# 🟣 ACTE 3 (Slide 13) — Documentation vivante & Synchronisation Confluence via MCP
+# 🟣 ACTE 3 (Slide 12) — Documentation vivante & Synchronisation Confluence via MCP
 ================================================================================
 
-- **Slide associée :** Slide 13
-- **Durée cible :** 4 minutes
+- **Slide associée :** Slide 12 (minute 25m00 à 29m30)
+- **Durée cible :** 4 minutes 30
 - **Objectif :** Démontrer l'intégration de l'agent au système d'entreprise grâce au protocole MCP : mise à jour automatique de la documentation d'architecture avec des schémas Mermaid et synchronisation en direct avec la page Confluence d'équipe, sans aucun copier-coller.
 
 ### 1. Préparation

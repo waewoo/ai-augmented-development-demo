@@ -2,12 +2,12 @@ import { access, readdir, readFile } from 'node:fs/promises'
 
 const slides = await readFile('slides.md', 'utf8')
 const slideCount = (slides.match(/^---$/gm) ?? []).length - 1
-if (slideCount > 18) throw new Error(`Too many slides: ${slideCount}`)
-if (slideCount !== 18) throw new Error(`Expected 18 slides, got ${slideCount}`)
+if (slideCount > 17) throw new Error(`Too many slides: ${slideCount}`)
+if (slideCount !== 17) throw new Error(`Expected 17 slides, got ${slideCount}`)
 
 for (const component of [
   'CoverSlide.vue', 'CoverHero.vue', 'ModelClientMatrix.vue', 'VibeCodingComparison.vue', 'WorkflowDiagram.vue', 'HarnessDiagram.vue', 'RulesComparison.vue',
-  'SkillAnatomy.vue', 'ConceptMap.vue', 'CodeEvolution.vue', 'DemoCue.vue', 'PitfallsCards.vue', 'ActionPlan.vue',
+  'SkillAnatomy.vue', 'ConceptMap.vue', 'ContextWindow.vue', 'CodeEvolution.vue', 'DemoCue.vue', 'PitfallsCards.vue', 'ActionPlan.vue',
   'ResourceQr.vue', 'ClosingSlide.vue', 'ClosingHero.vue',
 ]) {
   await access(`components/${component}`)

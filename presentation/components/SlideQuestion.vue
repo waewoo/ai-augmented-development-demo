@@ -50,13 +50,13 @@ function toggle() {
 <style scoped>
 .slide-question {
   align-items: center;
-  border-radius: 12px;
+  border-radius: 10px;
   cursor: pointer;
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 3px;
   justify-content: center;
-  padding: 6px 14px;
+  padding: 4px 12px;
   pointer-events: auto !important;
   position: relative;
   transition: all 0.15s ease;

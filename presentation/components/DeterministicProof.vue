@@ -80,24 +80,47 @@
     </div>
 
     <!-- Execution Tiers: Manuel vs Hooks CLI vs CI/CD -->
-    <div class="execution-tiers">
-      <span class="tiers-label">Niveaux de déclenchement :</span>
-      <div class="tier-pill tier-pill--manual">
-        <span class="tier-icon">💻</span>
-        <strong>Manuel</strong>
-        <small>Terminal / make demo-check</small>
+    <div class="execution-tiers-wrap">
+      <div class="tiers-header">
+        <span class="tiers-title">Niveaux de déclenchement déterministes</span>
+        <span class="tiers-sub">De l’exécution locale au contrôle d’équipe</span>
       </div>
-      <span class="tier-arrow">➔</span>
-      <div class="tier-pill tier-pill--hook">
-        <span class="tier-icon">🪝</span>
-        <strong>Hooks CLI &amp; Git</strong>
-        <small>Interception auto (Kilo / pre-commit)</small>
-      </div>
-      <span class="tier-arrow">➔</span>
-      <div class="tier-pill tier-pill--ci">
-        <span class="tier-icon">🚀</span>
-        <strong>Pipeline CI/CD</strong>
-        <small>GitLab CI / GitHub Actions avant merge</small>
+      <div class="tiers-grid">
+        <div class="tier-card tier-card--manual">
+          <div class="tier-card-top">
+            <span class="tier-icon">💻</span>
+            <div class="tier-card-meta">
+              <strong>Contrôle Manuel</strong>
+              <small>Local · Développeur</small>
+            </div>
+          </div>
+          <p>Exécution directe dans le terminal pour valider immédiatement le code généré.</p>
+          <code>make demo-check</code>
+        </div>
+
+        <div class="tier-card tier-card--hook">
+          <div class="tier-card-top">
+            <span class="tier-icon">🪝</span>
+            <div class="tier-card-meta">
+              <strong>Hooks CLI &amp; Git</strong>
+              <small>Automatique · Poste local</small>
+            </div>
+          </div>
+          <p>Interception automatique : Kilo Code ou pre-commit bloque l’action si un test échoue.</p>
+          <code>.git/hooks/pre-commit</code>
+        </div>
+
+        <div class="tier-card tier-card--ci">
+          <div class="tier-card-top">
+            <span class="tier-icon">🚀</span>
+            <div class="tier-card-meta">
+              <strong>Pipeline CI/CD</strong>
+              <small>Serveur · Équipe</small>
+            </div>
+          </div>
+          <p>Barrière inviolable avant merge : réexécution stricte en sandbox isolée.</p>
+          <code>gitlab-ci.yml · pytest</code>
+        </div>
       </div>
     </div>
 
@@ -371,66 +394,120 @@
   color: #34d399;
 }
 
-/* Execution Tiers Strip */
-.execution-tiers {
-  align-items: center;
-  background: #ffffff;
+/* Execution Tiers Styling */
+.execution-tiers-wrap {
+  background: var(--surface);
   border: 1px solid var(--line);
-  border-radius: 8px;
-  box-shadow: 0 1px 4px rgba(15, 23, 42, 0.03);
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.03);
   display: flex;
+  flex-direction: column;
   gap: 8px;
-  padding: 6px 12px;
+  padding: 10px 14px;
 }
 
-.tiers-label {
-  color: var(--muted);
-  font-size: 10px;
+.tiers-header {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+.tiers-title {
+  color: var(--teal);
+  font-size: 10.5px;
   font-weight: 800;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
 }
 
-.tier-pill {
-  align-items: center;
-  background: #f8fafc;
-  border: 1px solid #e2e8f0;
-  border-radius: 6px;
-  display: flex;
-  gap: 5px;
-  padding: 3px 8px;
-}
-
-.tier-pill strong {
-  color: #1e293b;
+.tiers-sub {
+  color: #64748b;
   font-size: 10.5px;
 }
 
-.tier-pill small {
-  color: #64748b;
-  font-size: 9px;
+.tiers-grid {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.tier-card {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 8px 10px;
+  transition: all 0.15s ease;
+}
+
+.tier-card:hover {
+  background: #ffffff;
+  border-color: #cbd5e1;
+  transform: translateY(-1px);
+}
+
+.tier-card--manual {
+  border-top: 3px solid #64748b;
+}
+
+.tier-card--hook {
+  background: #f0fdfa;
+  border-color: #ccfbf1;
+  border-top: 3px solid var(--teal);
+}
+
+.tier-card--ci {
+  background: #eff6ff;
+  border-color: #dbeafe;
+  border-top: 3px solid var(--violet);
+}
+
+.tier-card-top {
+  align-items: center;
+  display: flex;
+  gap: 7px;
 }
 
 .tier-icon {
-  font-size: 11px;
+  font-size: 14px;
 }
 
-.tier-arrow {
-  color: #cbd5e1;
-  font-size: 11px;
+.tier-card-meta {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
 }
 
-.tier-pill--hook {
-  background: #f0fdfa;
-  border-color: #99f6e4;
+.tier-card-meta strong {
+  color: var(--ink);
+  font-size: 11.5px;
 }
-.tier-pill--hook strong { color: #0f766e; }
 
-.tier-pill--ci {
-  background: #eff6ff;
-  border-color: #bfdbfe;
+.tier-card-meta small {
+  color: var(--muted);
+  font-size: 9.5px;
 }
-.tier-pill--ci strong { color: #1d4ed8; }
+
+.tier-card p {
+  color: #475569;
+  font-size: 10.5px;
+  line-height: 1.35;
+  margin: 0;
+}
+
+.tier-card code {
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 4px;
+  color: var(--ink);
+  font-family: ui-monospace, SFMono-Regular, monospace;
+  font-size: 9.5px;
+  font-weight: 700;
+  margin-top: auto;
+  padding: 2px 6px;
+  width: fit-content;
+}
 
 /* Footer Takeaway */
 .proof-takeaway {

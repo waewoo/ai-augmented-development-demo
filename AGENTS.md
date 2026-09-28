@@ -43,3 +43,4 @@ Pour les règles techniques détaillées par domaine, se référer aux fichiers 
 - `implement-change` : Applique le changement approuvé sur le code, exécute `make demo-check` et consigne l'avancement dans `plans/YYYY-MM-DD-<feature>/AVANCEMENT.md`.
 - `review-change` : Compare le diff Git avec le plan et les règles, et consigne le rapport d'audit dans `plans/YYYY-MM-DD-<feature>/REVIEW.md`.
 - `document-architecture` : Génère ou met à jour la documentation d'architecture (`docs/ARCHITECTURE.md`) avec schémas Mermaid.
+- `generate-confluence-architecture` : Convertit `docs/ARCHITECTURE.md` en page Confluence interactive et soignée (Confluence Storage Format XHTML avec layouts, lozenges, panels, expands et checklists).

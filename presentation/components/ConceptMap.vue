@@ -2,30 +2,30 @@
   <div class="concept-map">
     <article class="concept-card concept-card--why">
       <div class="concept-card__badge">01 · Pourquoi ?</div>
-      <strong>Intention & critères</strong>
-      <p>Comprendre le besoin réel, les critères d’acceptation et le comportement attendu avant tout changement.</p>
-      <div class="concept-card__tag">Demande claire</div>
+      <strong>Intention &amp; critères d’acceptation</strong>
+      <p>Comprendre le besoin réel, les critères d’acceptation et les cas d’erreur avant d’écrire la première ligne.</p>
+      <div class="concept-card__tag">Demande claire · Sans ambiguïté</div>
     </article>
 
     <article class="concept-card concept-card--where">
       <div class="concept-card__badge">02 · Où ?</div>
-      <strong>Code & architecture</strong>
-      <p>Identifier le point d’entrée, les modules existants, les types de données et l’organisation du projet.</p>
-      <div class="concept-card__tag">Point d’ancrage</div>
+      <strong>Architecture &amp; points d’ancrage</strong>
+      <p>Identifier le point d’entrée, les modèles de données, les modules métier existants et les tests de non-régression.</p>
+      <div class="concept-card__tag">Repérage chirurgical</div>
     </article>
 
     <article class="concept-card concept-card--how">
       <div class="concept-card__badge">03 · Comment ?</div>
-      <strong>Rules & conventions</strong>
-      <p>Appliquer les choix d’architecture, les normes de style, les consignes de sécurité et de restitution.</p>
-      <div class="concept-card__tag">Attentes projet</div>
+      <strong>Rules &amp; conventions du dépôt</strong>
+      <p>Appliquer les choix d’architecture (découplage API/service), le typage strict et les standards de restitution du projet.</p>
+      <div class="concept-card__tag">Cadre pérenne · AGENTS.md</div>
     </article>
 
     <article class="concept-card concept-card--limit">
       <div class="concept-card__badge">04 · Jusqu’où ?</div>
-      <strong>Garde-fous & preuves</strong>
-      <p>Poser les limites d’action, les permissions d’outils et s’appuyer sur la suite de tests existante.</p>
-      <div class="concept-card__tag">Périmètre borné</div>
+      <strong>Garde-fous &amp; preuves machine</strong>
+      <p>Poser les barrières d’action : mode lecture seule, sandbox isolée et validation déterministe obligatoire par les tests.</p>
+      <div class="concept-card__tag">Périmètre borné &amp; contrôlé</div>
     </article>
 
     <div class="concept-map__question">
@@ -41,21 +41,24 @@
 <style scoped>
 .concept-map {
   display: grid;
-  gap: 12px;
+  flex: 1;
+  gap: 16px;
   grid-template-columns: repeat(2, 1fr);
-  margin: 10px auto 0;
+  margin: 12px auto 0;
   max-width: 1040px;
+  width: 100%;
 }
 
 .concept-card {
   background: var(--surface);
   border: 1px solid var(--line);
   border-left: 5px solid var(--violet);
-  border-radius: 12px;
+  border-radius: 14px;
   box-shadow: 0 4px 16px rgba(15, 23, 42, 0.04);
   display: flex;
   flex-direction: column;
-  padding: 12px 18px;
+  min-height: 148px;
+  padding: 16px 20px;
   position: relative;
   transition: all 0.15s ease;
 }
@@ -80,7 +83,7 @@
 
 .concept-card__badge {
   color: var(--violet);
-  font-size: 11px;
+  font-size: 11.5px;
   font-weight: 800;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -100,16 +103,16 @@
 
 .concept-card strong {
   color: var(--ink);
-  font-size: 17px;
-  line-height: 1.2;
-  margin-top: 4px;
+  font-size: 17.5px;
+  line-height: 1.25;
+  margin-top: 5px;
 }
 
 .concept-card p {
   color: var(--muted);
-  font-size: 13px;
-  line-height: 1.35;
-  margin: 4px 0 0;
+  font-size: 13.5px;
+  line-height: 1.42;
+  margin: 6px 0 0;
 }
 
 .concept-card__tag {
@@ -117,15 +120,15 @@
   border: 1px solid var(--line);
   border-radius: 999px;
   color: var(--muted);
-  font-size: 11px;
+  font-size: 11.5px;
   font-weight: 700;
-  margin-top: 8px;
-  padding: 2px 10px;
+  margin-top: auto;
+  padding: 3px 11px;
   width: fit-content;
 }
 
 .concept-map__question {
   grid-column: 1 / -1;
-  margin-top: 4px;
+  margin-top: 8px;
 }
 </style>

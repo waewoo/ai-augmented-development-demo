@@ -118,9 +118,9 @@
 
     <!-- Bottom Takeaway Banner -->
     <div class="vibe-takeaway">
-      <span class="takeaway-pill">Principe clé</span>
+      <span class="takeaway-pill">Règle de production</span>
       <p>
-        <strong>Vibe-coder pour explorer et prototyper vite</strong>, mais basculer sur un <strong>workflow cadré</strong> dès que le code impacte l'équipe ou la production.
+        <strong>Vibe-coder pour explorer et prototyper vite</strong>, mais basculer sur un <strong>workflow cadré</strong> dès que le code impacte l’équipe ou la production. <em>« Tester directement en prod n’est pas une stratégie d’ingénierie. »</em>
       </p>
     </div>
   </div>
@@ -129,16 +129,18 @@
 <style scoped>
 .vibe-comparison-wrapper {
   display: flex;
+  flex: 1;
   flex-direction: column;
-  gap: 8px;
-  margin-top: 10px;
+  gap: 14px;
+  margin-top: 12px;
   width: 100%;
 }
 
 .vibe-grid {
   align-items: stretch;
   display: grid;
-  gap: 12px;
+  flex: 1;
+  gap: 16px;
   grid-template-columns: 1fr 90px 1fr;
   width: 100%;
 }
@@ -146,11 +148,12 @@
 /* Card base */
 .vibe-card {
   background: var(--surface, #ffffff);
-  border-radius: 12px;
+  border-radius: 14px;
   box-shadow: 0 4px 14px rgba(15, 23, 42, 0.04);
   display: flex;
   flex-direction: column;
-  padding: 12px 15px;
+  min-height: 290px;
+  padding: 16px 20px;
   transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 
@@ -440,30 +443,36 @@
   align-items: center;
   background: #f8fafc;
   border: 1px solid #e2e8f0;
-  border-left: 3px solid var(--teal, #00875a);
-  border-radius: 8px;
+  border-left: 4px solid var(--teal, #00875a);
+  border-radius: 10px;
   display: flex;
-  gap: 10px;
-  padding: 5px 12px;
+  gap: 14px;
+  padding: 10px 18px;
 }
 
 .takeaway-pill {
   background: var(--teal, #00875a);
   border-radius: 999px;
   color: #ffffff;
-  font-size: 9px;
+  font-size: 10.5px;
   font-weight: 800;
   letter-spacing: 0.06em;
-  padding: 2px 7px;
+  padding: 3px 10px;
   text-transform: uppercase;
   white-space: nowrap;
 }
 
 .vibe-takeaway p {
   color: #334155;
-  font-size: 10.5px;
-  line-height: 1.3;
+  font-size: 13px;
+  line-height: 1.4;
   margin: 0;
+}
+
+.vibe-takeaway em {
+  color: #b45309;
+  font-style: italic;
+  font-weight: 600;
 }
 
 .vibe-takeaway strong {

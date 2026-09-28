@@ -145,23 +145,28 @@ const layers = [
 <style scoped>
 .harness-container {
   display: flex;
+  flex: 1;
   flex-direction: column;
-  gap: 8px;
-  margin: 4px auto 0;
+  gap: 12px;
+  justify-content: space-between;
+  margin: 10px auto 0;
   max-width: 1040px;
+  width: 100%;
 }
 
 .harness-grid {
   display: grid;
   flex: 1;
-  gap: 12px;
-  grid-template-columns: 1.4fr 1fr;
+  gap: 16px;
+  grid-template-columns: 1.35fr 1fr;
 }
 
 .harness-layers {
   display: flex;
+  flex: 1;
   flex-direction: column;
-  gap: 5px;
+  gap: 8px;
+  justify-content: space-between;
 }
 
 .harness__layer {
@@ -169,12 +174,13 @@ const layers = [
   background: var(--surface);
   border: 1px solid var(--line);
   border-left: 5px solid var(--violet);
-  border-radius: 8px;
+  border-radius: 10px;
   box-shadow: 0 2px 6px rgba(15, 23, 42, 0.02);
   display: grid;
-  gap: 10px;
+  gap: 12px;
   grid-template-columns: 32px 1fr;
-  padding: 6px 11px;
+  min-height: 52px;
+  padding: 9px 14px;
   transition: all 0.15s ease;
 }
 
@@ -193,7 +199,7 @@ const layers = [
 .harness__number {
   color: var(--muted);
   font-family: ui-monospace, SFMono-Regular, monospace;
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 800;
   letter-spacing: -0.02em;
 }
@@ -201,7 +207,7 @@ const layers = [
 .harness__content {
   display: flex;
   flex-direction: column;
-  gap: 1px;
+  gap: 2px;
 }
 
 .harness__top {
@@ -212,7 +218,8 @@ const layers = [
 
 .harness__title {
   color: var(--ink);
-  font-size: 13px;
+  font-size: 14.5px;
+  font-weight: 750;
   line-height: 1.2;
 }
 
@@ -220,22 +227,23 @@ const layers = [
   background: #f1f5f9;
   border-radius: 4px;
   color: var(--muted);
-  font-size: 8.5px;
+  font-size: 9px;
   font-weight: 800;
   letter-spacing: 0.06em;
-  padding: 1px 5px;
+  padding: 1.5px 6px;
   text-transform: uppercase;
 }
 
 .harness__desc {
   color: var(--muted);
-  font-size: 10px;
-  line-height: 1.25;
+  font-size: 11.5px;
+  line-height: 1.35;
 }
 
 /* Visual Harness Orbit */
 .harness-visual {
   display: flex;
+  flex: 1;
   flex-direction: column;
 }
 
@@ -243,13 +251,13 @@ const layers = [
   align-items: center;
   background: #ffffff;
   border: 1px solid var(--line);
-  border-radius: 12px;
+  border-radius: 14px;
   box-shadow: 0 4px 14px rgba(15, 23, 42, 0.04);
   display: flex;
+  flex: 1;
   flex-direction: column;
-  height: 100%;
   justify-content: space-between;
-  padding: 8px 10px;
+  padding: 12px 14px;
   position: relative;
 }
 
@@ -262,7 +270,7 @@ const layers = [
 
 .visual-tag {
   color: var(--teal);
-  font-size: 10.5px;
+  font-size: 11px;
   font-weight: 800;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -270,13 +278,13 @@ const layers = [
 
 .visual-header small {
   color: var(--muted);
-  font-size: 9.5px;
+  font-size: 10px;
 }
 
 .orbit-stage {
   align-items: center;
   display: flex;
-  height: 96px;
+  height: 114px;
   justify-content: center;
   position: relative;
   width: 100%;
@@ -285,9 +293,9 @@ const layers = [
 .shield-boundary {
   border: 2px dashed #cbd5e1;
   border-radius: 50%;
-  height: 86px;
+  height: 102px;
   position: absolute;
-  width: 86px;
+  width: 102px;
 }
 
 .shield-badge {
@@ -297,9 +305,9 @@ const layers = [
   border-radius: 999px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
   display: flex;
-  font-size: 8.5px;
+  font-size: 9.5px;
   gap: 4px;
-  padding: 1px 6px;
+  padding: 2px 7px;
   position: absolute;
   white-space: nowrap;
   z-index: 2;
@@ -308,8 +316,8 @@ const layers = [
 .shield-dot {
   border-radius: 50%;
   display: inline-block;
-  height: 5px;
-  width: 5px;
+  height: 6px;
+  width: 6px;
 }
 
 .shield-dot--rule { background: #6366f1; }
@@ -319,17 +327,17 @@ const layers = [
 
 .shield-badge strong { color: #1e293b; }
 
-.shield-badge--top { top: -4px; }
-.shield-badge--bottom { bottom: -4px; border-color: #a7f3d0; background: #ecfdf5; }
+.shield-badge--top { top: -6px; }
+.shield-badge--bottom { bottom: -6px; border-color: #a7f3d0; background: #ecfdf5; }
 .shield-badge--bottom strong { color: #047857; }
-.shield-badge--left { left: -8px; }
-.shield-badge--right { right: -8px; }
+.shield-badge--left { left: -10px; }
+.shield-badge--right { right: -10px; }
 
 .agent-center {
   align-items: center;
   display: flex;
   flex-direction: column;
-  gap: 1px;
+  gap: 2px;
   z-index: 1;
 }
 
@@ -337,9 +345,9 @@ const layers = [
   background: #0f172a;
   border-radius: 4px;
   color: #f8fafc;
-  font-size: 8px;
+  font-size: 9px;
   font-weight: 700;
-  padding: 1px 5px;
+  padding: 1.5px 6px;
 }
 
 /* Prompt Injection Attack Scenario Box */
@@ -350,8 +358,8 @@ const layers = [
   border-radius: 8px;
   display: flex;
   flex-direction: column;
-  gap: 3px;
-  padding: 5px 8px;
+  gap: 4px;
+  padding: 8px 10px;
   text-align: left;
   width: 100%;
 }
@@ -366,16 +374,16 @@ const layers = [
   background: #fee2e2;
   border-radius: 4px;
   color: #991b1b;
-  font-size: 8px;
+  font-size: 8.5px;
   font-weight: 800;
   letter-spacing: 0.04em;
-  padding: 1px 4px;
+  padding: 1.5px 5px;
   text-transform: uppercase;
 }
 
 .injection-scenario__head strong {
   color: #991b1b;
-  font-size: 10.5px;
+  font-size: 11px;
 }
 
 .injection-threat {
@@ -387,7 +395,7 @@ const layers = [
 
 .threat-label {
   color: #7f1d1d;
-  font-size: 9px;
+  font-size: 9.5px;
   font-weight: 700;
 }
 
@@ -397,9 +405,9 @@ const layers = [
   border-radius: 4px;
   color: #b91c1c;
   font-family: ui-monospace, SFMono-Regular, monospace;
-  font-size: 8.5px;
-  line-height: 1.25;
-  padding: 2px 5px;
+  font-size: 9.5px;
+  line-height: 1.3;
+  padding: 3px 6px;
   white-space: normal;
   word-break: break-word;
 }
@@ -408,7 +416,7 @@ const layers = [
   align-items: center;
   display: flex;
   gap: 6px;
-  margin: 1px 0 0;
+  margin: 2px 0 0;
 }
 
 .defense-badge {
@@ -417,18 +425,18 @@ const layers = [
   border-radius: 3px;
   color: #166534;
   flex-shrink: 0;
-  font-size: 8px;
+  font-size: 8.5px;
   font-weight: 800;
   letter-spacing: 0.04em;
-  padding: 1px 4px;
+  padding: 1.5px 5px;
   text-transform: uppercase;
   white-space: nowrap;
 }
 
 .defense-text {
   color: #166534;
-  font-size: 8.5px;
-  line-height: 1.25;
+  font-size: 9.5px;
+  line-height: 1.3;
 }
 
 .defense-text strong {
@@ -440,28 +448,30 @@ const layers = [
   align-items: center;
   background: var(--surface);
   border: 1px solid var(--line);
-  border-radius: 8px;
+  border-left: 4px solid var(--teal);
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 135, 90, 0.04);
   display: flex;
-  font-size: 11px;
-  gap: 10px;
-  padding: 5px 10px;
+  gap: 14px;
+  padding: 10px 16px;
 }
 
 .takeaway-badge {
-  background: #f1f5f9;
-  border: 1px solid #cbd5e1;
-  border-radius: 4px;
-  color: var(--muted);
+  background: var(--teal);
+  border-radius: 999px;
+  color: #ffffff;
   flex-shrink: 0;
-  font-size: 9.5px;
+  font-size: 10px;
   font-weight: 800;
   letter-spacing: 0.06em;
-  padding: 2px 6px;
+  padding: 3px 9px;
   text-transform: uppercase;
 }
 
 .harness-takeaway p {
   color: var(--ink);
+  font-size: 12.5px;
+  line-height: 1.4;
   margin: 0;
 }
 </style>

@@ -12,16 +12,6 @@ import CoverHero from './CoverHero.vue'
         </div>
 
         <h1 class="cover-title">Premiers pas vers<br>le développement<br>augmenté par l’IA</h1>
-
-        <p class="cover-subtitle">Une méthode concrète pour cadrer, déléguer et vérifier le code généré.</p>
-
-        <div class="cover-pipeline">
-          <div class="cover-pill"><b>01</b> Demande & contexte</div>
-          <span class="cover-pipeline-arrow">→</span>
-          <div class="cover-pill"><b>02</b> Plan & action</div>
-          <span class="cover-pipeline-arrow">→</span>
-          <div class="cover-pill"><b>03</b> Preuves & décision</div>
-        </div>
       </div>
 
       <!-- Right Column: AI Companion Robot Hero -->
@@ -121,41 +111,11 @@ import CoverHero from './CoverHero.vue'
 
 .cover-title {
   color: #0f172a !important;
-  font-size: 32px !important;
+  font-size: 38px !important;
   font-weight: 850 !important;
   letter-spacing: -0.03em !important;
-  line-height: 1.16 !important;
-  margin-top: 14px !important;
-}
-
-.cover-subtitle {
-  border-left: 3px solid #00875a;
-  color: #475569;
-  font-size: 15px;
-  line-height: 1.4;
-  margin-top: 12px;
-  padding-left: 14px;
-}
-
-.cover-pipeline {
-  align-items: center;
-  display: flex;
-  gap: 8px;
-  margin-top: 20px;
-}
-
-.cover-pill {
-  align-items: center;
-  background: #ffffff;
-  border: 1px solid #e2e8f0;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
-  color: #0f172a;
-  display: flex;
-  font-size: 11.5px;
-  font-weight: 600;
-  gap: 6px;
-  padding: 5px 11px;
+  line-height: 1.18 !important;
+  margin-top: 20px !important;
 }
 
 .cover-pill b {

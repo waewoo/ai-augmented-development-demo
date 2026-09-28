@@ -6,9 +6,11 @@ const connectors = [
     role: 'Spécifications & User Stories',
     server: 'mcp-server-jira',
     color: 'blue',
+    toolCall: 'jira_get_issue("PAY-104")',
     bullets: [
       'Lit directement le ticket brut et ses critères d’acceptation',
-      'Identifie les cas d’erreur oubliés sans copier-coller manuel',
+      'Identifie les cas limites oubliés sans aucun copier-coller',
+      'Zéro token en clair : authentification déléguée et auditée',
     ],
   },
   {
@@ -17,9 +19,11 @@ const connectors = [
     role: 'Architecture & Chartes internes',
     server: 'mcp-server-confluence',
     color: 'emerald',
+    toolCall: 'confluence_get_page("ADR-042")',
     bullets: [
       'Consulte les ADRs (Architecture Decision Records) d’équipe',
-      'Évite de réinventer un module ou une lib interne déjà existante',
+      'Évite de réinventer une lib ou un module interne existant',
+      'Maintient la documentation vivante alignée sur le code réel',
     ],
   },
   {
@@ -28,9 +32,11 @@ const connectors = [
     role: 'CI/CD & Merge Requests',
     server: 'mcp-server-gitlab',
     color: 'amber',
+    toolCall: 'gitlab_get_pipeline_logs(job_id)',
     bullets: [
-      'Récupère les logs du job CI en échec pour comprendre la panne',
+      'Récupère les logs du job CI en échec pour poser un diagnostic',
       'Prépare le résumé de la Merge Request aligné sur le diff Git',
+      'Ne merge et ne pousse aucun commit sans contrôle humain',
     ],
   },
 ]
@@ -68,6 +74,7 @@ const connectors = [
 
         <div class="connector-server">
           <code>{{ item.server }}</code>
+          <span class="tool-call">outil : <code>{{ item.toolCall }}</code></span>
         </div>
 
         <ul class="connector-bullets">
@@ -80,7 +87,7 @@ const connectors = [
     <div class="mcp-guardrail">
       <div class="guardrail-badge">GARDE-FOU ENTREPRISE</div>
       <p>
-        <strong>Lecture Seule (Read-Only) par défaut :</strong> l’agent consulte les tickets, la doc et les schémas à la source, mais <u>ne modifie, ne commente et ne clôture aucun ticket</u> sans autorisation humaine expresse.
+        <strong>Lecture Seule (Read-Only) par défaut :</strong> l’agent consulte les tickets, la doc et les logs à la source, mais <u>ne modifie, ne commente et ne clôture aucun ticket</u> sans autorisation humaine expresse.
       </p>
     </div>
   </div>
@@ -89,10 +96,13 @@ const connectors = [
 <style scoped>
 .mcp-ecosystem {
   display: flex;
+  flex: 1;
   flex-direction: column;
-  gap: 12px;
+  gap: 14px;
+  justify-content: space-between;
   margin: 10px auto 0;
   max-width: 1040px;
+  width: 100%;
 }
 
 /* Protocol Banner */
@@ -104,7 +114,7 @@ const connectors = [
   box-shadow: 0 2px 8px rgba(15, 23, 42, 0.03);
   display: flex;
   gap: 14px;
-  padding: 8px 14px;
+  padding: 10px 16px;
 }
 
 .mcp-pill {
@@ -114,7 +124,7 @@ const connectors = [
   border-radius: 8px;
   display: flex;
   gap: 8px;
-  padding: 4px 10px;
+  padding: 5px 12px;
   white-space: nowrap;
 }
 
@@ -122,16 +132,16 @@ const connectors = [
   background: var(--teal);
   border-radius: 4px;
   color: #ffffff;
-  font-size: 9px;
+  font-size: 10px;
   font-weight: 800;
   letter-spacing: 0.06em;
-  padding: 1px 5px;
+  padding: 2px 6px;
   text-transform: uppercase;
 }
 
 .mcp-pill strong {
   color: var(--ink);
-  font-size: 12.5px;
+  font-size: 13.5px;
 }
 
 .mcp-header-arrow {
@@ -141,28 +151,29 @@ const connectors = [
 
 .mcp-header-desc {
   color: var(--muted);
-  font-size: 11.5px;
-  line-height: 1.35;
+  font-size: 12.5px;
+  line-height: 1.4;
   margin: 0;
 }
 
 /* Grid */
 .connectors-grid {
   display: grid;
-  gap: 12px;
+  flex: 1;
+  gap: 14px;
   grid-template-columns: repeat(3, 1fr);
 }
 
 .connector-card {
   background: var(--surface);
   border: 1px solid var(--line);
-  border-radius: 12px;
+  border-radius: 14px;
   box-shadow: 0 4px 12px rgba(15, 23, 42, 0.03);
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  min-height: 200px;
-  padding: 12px 12px 14px;
+  gap: 10px;
+  min-height: 250px;
+  padding: 14px 16px;
   transition: all 0.15s ease;
 }
 
@@ -188,10 +199,10 @@ const connectors = [
 .connector-tag {
   border-radius: 6px;
   font-family: ui-monospace, SFMono-Regular, monospace;
-  font-size: 10px;
+  font-size: 10.5px;
   font-weight: 800;
   letter-spacing: 0.05em;
-  padding: 3px 6px;
+  padding: 3px 8px;
   white-space: nowrap;
 }
 
@@ -203,18 +214,18 @@ const connectors = [
 .connector-titles {
   display: flex;
   flex-direction: column;
-  gap: 1px;
+  gap: 2px;
 }
 
 .connector-titles strong {
   color: var(--ink);
-  font-size: 13.5px;
+  font-size: 15px;
   line-height: 1.2;
 }
 
 .connector-role {
   color: var(--muted);
-  font-size: 10px;
+  font-size: 11px;
   font-weight: 600;
   line-height: 1.2;
 }
@@ -223,29 +234,43 @@ const connectors = [
   background: #f8fafc;
   border: 1px dashed #cbd5e1;
   border-radius: 6px;
-  padding: 3px 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: 5px 8px;
 }
 
 .connector-server code {
   color: #475569;
+  font-family: ui-monospace, SFMono-Regular, monospace;
+  font-size: 10px;
+}
+
+.tool-call {
+  color: #64748b;
   font-size: 9.5px;
+}
+
+.tool-call code {
+  color: #0f766e;
+  font-weight: 700;
 }
 
 .connector-bullets {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 8px;
   list-style: none;
-  margin: 2px 0 0;
+  margin: 4px 0 0;
   padding: 0;
 }
 
 .connector-bullets li {
   color: #334155;
-  font-size: 10.5px;
-  line-height: 1.35;
+  font-size: 11.5px;
+  line-height: 1.38;
   position: relative;
-  padding-left: 11px;
+  padding-left: 12px;
 }
 
 .connector-bullets li::before {

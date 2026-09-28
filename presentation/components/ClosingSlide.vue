@@ -24,7 +24,11 @@ import ClosingHero from './ClosingHero.vue'
           :initial="{ opacity: 0, y: 20 }"
           :enter="{ opacity: 1, y: 0, transition: { duration: 500, delay: 200 } }"
         >
-          <div class="closing-qa-icon">💬</div>
+          <div class="closing-qa-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#00875a" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+            </svg>
+          </div>
           <div class="closing-qa-content">
             <strong class="closing-qa-title">Avez-vous des questions ?</strong>
             <p class="closing-qa-text">

@@ -144,20 +144,23 @@ const promptIssues = [
 .rules-comparison {
   align-items: stretch;
   display: grid;
-  gap: 10px;
+  flex: 1;
+  gap: 14px;
   grid-template-columns: 0.95fr 36px 1.62fr;
-  margin: 4px auto 0;
+  margin: 10px auto 0;
   max-width: 1060px;
+  width: 100%;
 }
 
 .rules-panel {
   background: var(--surface);
   border: 1px solid var(--line);
-  border-radius: 12px;
+  border-radius: 14px;
   box-shadow: 0 4px 14px rgba(15, 23, 42, 0.04);
   display: flex;
   flex-direction: column;
-  padding: 10px 14px;
+  min-height: 290px;
+  padding: 16px 18px;
 }
 
 .rules-panel--left {
@@ -176,11 +179,11 @@ const promptIssues = [
 }
 
 .panel-header {
-  margin-bottom: 6px;
+  margin-bottom: 10px;
 }
 
 .panel-badge {
-  font-size: 10.5px;
+  font-size: 11px;
   font-weight: 800;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -194,25 +197,25 @@ const promptIssues = [
   background: #ffffff;
   border: 1px solid #fecaca;
   border-left: 3px solid #ef4444;
-  border-radius: 7px;
-  padding: 6px 10px;
-  margin-bottom: 8px;
+  border-radius: 8px;
+  padding: 10px 14px;
+  margin-bottom: 14px;
 }
 
 .prompt-box__label {
   align-items: center;
   color: #991b1b;
   display: flex;
-  font-size: 10px;
+  font-size: 11px;
   font-weight: 700;
-  gap: 5px;
-  margin-bottom: 2px;
+  gap: 6px;
+  margin-bottom: 4px;
 }
 
 .prompt-box__content {
   color: #1e293b;
   font-family: ui-monospace, SFMono-Regular, monospace;
-  font-size: 11.5px;
+  font-size: 13px;
   font-weight: 600;
   margin: 0;
 }
@@ -220,15 +223,15 @@ const promptIssues = [
 .issues-list {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 10px;
 }
 
 .issue-item {
   align-items: flex-start;
   display: flex;
-  gap: 6px;
-  font-size: 11.5px;
-  line-height: 1.3;
+  gap: 8px;
+  font-size: 13px;
+  line-height: 1.4;
   color: #64748b;
 }
 

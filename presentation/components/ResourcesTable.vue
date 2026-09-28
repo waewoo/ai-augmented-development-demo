@@ -59,7 +59,7 @@ const resources: ResourceItem[] = [
       { label: 'AIDD', url: 'https://github.com/ai-driven-dev/framework' },
       { label: 'BMAD', url: 'https://docs.bmad-method.org/fr/' },
     ],
-    purpose: 'Exemples de structuration : spec → plan → tasks → code (illustrations, hors reco officielle BNP).',
+    purpose: 'Exemples de structuration : spec → plan → tasks → code (illustrations, hors reco officielle).',
   },
   {
     category: 'Sécurité & Risques',
@@ -148,11 +148,11 @@ const resources: ResourceItem[] = [
   border-bottom: 1px solid var(--line);
   color: #64748b;
   display: grid;
-  font-size: 9.5px;
+  font-size: 10px;
   font-weight: 800;
   grid-template-columns: 145px 255px 1fr;
   letter-spacing: 0.08em;
-  padding: 5px 14px;
+  padding: 8px 14px;
   text-transform: uppercase;
 }
 
@@ -161,8 +161,8 @@ const resources: ResourceItem[] = [
   border-bottom: 1px solid var(--line);
   display: grid;
   grid-template-columns: 145px 255px 1fr;
-  min-height: 36px;
-  padding: 5px 14px;
+  min-height: 46px;
+  padding: 8px 14px;
   transition: background-color 0.12s ease;
 }
 

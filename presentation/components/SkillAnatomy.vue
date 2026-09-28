@@ -1,29 +1,20 @@
 <script setup lang="ts">
 const skillExamples = [
-  { name: 'plan-change', role: 'Cadrage préalable', note: 'Lecture seule absolue' },
-  { name: 'implement-change', role: 'Code chirurgical', note: 'Application du plan validé' },
-  { name: 'review-change', role: 'Audit critique', note: 'Diff Git & conformité rules' },
-  { name: 'document-architecture', role: 'Doc vivante', note: 'Schéma Mermaid & routes' },
+  { name: 'plan-change', role: 'Cadrage préalable', note: 'Lecture seule absolue · Génère PLAN.md' },
+  { name: 'implement-change', role: 'Application ciblée', note: 'Code chirurgical · Exécute demo-check' },
+  { name: 'review-change', role: 'Audit critique', note: 'Diff Git & conformité · Génère REVIEW.md' },
+  { name: 'document-architecture', role: 'Doc vivante', note: 'Analyse Python · Diagramme Mermaid' },
 ]
 </script>
 
 <template>
   <div class="skill-anatomy">
-    <!-- Discrete Rules vs Skills contrast strip -->
-    <div class="contrast-bar">
-      <div class="contrast-item contrast-item--rule">
-        <span class="contrast-badge contrast-badge--rule">Rule · AGENTS.md</span>
-        <span class="contrast-desc">
-          <strong>Cadre passif :</strong> invariants permanents du dépôt
-        </span>
-      </div>
-      <div class="contrast-divider">vs</div>
-      <div class="contrast-item contrast-item--skill">
-        <span class="contrast-badge contrast-badge--skill">Skill · SKILL.md</span>
-        <span class="contrast-desc">
-          <strong>Méthode active :</strong> procédure outillée exécutée par tâche
-        </span>
-      </div>
+    <!-- Clean compact intro strip -->
+    <div class="skill-intro-strip">
+      <span class="intro-pill">SOP outillée</span>
+      <span class="intro-text">
+        Complément d'<code>AGENTS.md</code> : la Règle fixe le cadre passif · Le Skill formalise la <strong>procédure active étape par étape</strong>.
+      </span>
     </div>
 
     <!-- Main grid: Editor Anatomy on Left (56%), Key Superpowers on Right (44%) -->
@@ -51,7 +42,7 @@ const skillExamples = [
           <div class="code-section code-section--yaml">
             <div class="section-label">
               <span class="label-badge label-badge--yaml">01 · Frontmatter YAML</span>
-              <span class="label-hint">Déclenchement sémantique ou manuel</span>
+              <span class="label-hint">Déclenchement sémantique & métadonnées</span>
             </div>
             <div class="code-row"><span class="c-delim">---</span></div>
             <div class="code-row">
@@ -60,7 +51,11 @@ const skillExamples = [
             </div>
             <div class="code-row">
               <span class="c-key">description:</span>
-              <span class="c-str">« Explorer et planifier sans modifier de code... »</span>
+              <span class="c-str">« Explorer le code en lecture seule, cadrer l'impact et rédiger PLAN.md... »</span>
+            </div>
+            <div class="code-row">
+              <span class="c-key">mode:</span> <span class="c-val">read-only</span>
+              <span class="c-tag c-tag--ro">Garde-fou strict</span>
             </div>
             <div class="code-row"><span class="c-delim">---</span></div>
           </div>
@@ -68,20 +63,26 @@ const skillExamples = [
           <!-- Section 2: Procedure -->
           <div class="code-section code-section--proc">
             <div class="section-label">
-              <span class="label-badge label-badge--proc">02 · Procédure outillée</span>
-              <span class="label-hint">Étapes séquentielles que l'agent déroule</span>
+              <span class="label-badge label-badge--proc">02 · Procédure outillée (SOP)</span>
+              <span class="label-hint">Étapes séquentielles exécutées par l'agent</span>
             </div>
             <div class="code-row code-row--heading">
               <span class="c-hash">##</span> <span class="c-head">Procédure</span>
             </div>
             <div class="code-row">
-              <span class="c-num">1.</span> <span>Lire <code>AGENTS.md</code> et conventions du projet</span>
+              <span class="c-num">1.</span> <span>Explorer l’arborescence et repérer les modules cibles (app/, tests/)</span>
             </div>
             <div class="code-row">
-              <span class="c-num">2.</span> <span>Analyser le code existant et les tests de non-régression</span>
+              <span class="c-num">2.</span> <span>Inspecter les tests existants et formaliser les contrats d’API</span>
             </div>
             <div class="code-row">
-              <span class="c-num">3.</span> <span>Énumérer les fichiers cibles et les critères d’acceptation</span>
+              <span class="c-num">3.</span> <span>Identifier le périmètre minimal et isoler les cas d'erreur (HTTP 422)</span>
+            </div>
+            <div class="code-row">
+              <span class="c-num">4.</span> <span>Rédiger la stratégie complète dans <code>plans/YYYY-MM-DD/PLAN.md</code></span>
+            </div>
+            <div class="code-row">
+              <span class="c-num">5.</span> <span>Fournir le lien Markdown et <strong>demander l’accord humain express</strong></span>
             </div>
           </div>
 
@@ -92,32 +93,38 @@ const skillExamples = [
                 <span class="label-badge label-badge--guard">03 · Garde-fou</span>
               </div>
               <div class="code-row code-row--heading">
-                <span class="c-hash">##</span> <span class="c-head">Limite stricte</span>
+                <span class="c-hash">##</span> <span class="c-head">Limite d'action</span>
               </div>
               <div class="code-row c-alert">
                 <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#f43f5e" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                   <circle cx="12" cy="12" r="10" />
                   <line x1="4.93" y1="4.93" x2="19.07" y2="19.07" />
                 </svg>
-                <span>Ne modifier aucun fichier.</span>
+                <span>Lecture seule absolue (zéro write).</span>
               </div>
               <div class="code-row c-alert-sub">
-                <span>Attendre approbation humaine.</span>
+                <span>Interdiction formelle de modifier le code.</span>
+              </div>
+              <div class="code-row c-alert-sub">
+                <span>Validation humaine obligatoire pour agir.</span>
               </div>
             </div>
 
             <div class="code-section code-section--output">
               <div class="section-label">
-                <span class="label-badge label-badge--output">04 · Format attendu</span>
+                <span class="label-badge label-badge--output">04 · Structure du plan</span>
               </div>
               <div class="code-row code-row--heading">
                 <span class="c-hash">##</span> <span class="c-head">Sortie attendue</span>
               </div>
               <div class="code-row">
-                <span>Titres : <code>Compréhension</code>,</span>
+                <span>Sections : <code>Contexte</code>, <code>Critères</code></span>
               </div>
               <div class="code-row">
-                <span><code>Fichiers</code>, <code>Tests</code>, <code>Risques</code></span>
+                <span><code>Fichiers</code>, <code>Tests</code>, <code>Checklist</code></span>
+              </div>
+              <div class="code-row c-tag-row">
+                <span class="c-out-tag">Preuve Markdown versionnée</span>
               </div>
             </div>
           </div>
@@ -137,11 +144,12 @@ const skillExamples = [
           </div>
           <div class="feature-content">
             <div class="feature-title">
-              <strong>Double déclenchement</strong>
+              <strong>Double déclenchement intelligent</strong>
               <span class="feature-pill">Sémantique + Manuel</span>
             </div>
             <p>
-              Le LLM compare le prompt avec le champ <code>description</code> pour s'activer automatiquement. L'humain peut aussi l'invoquer en direct (ex: <code>/plan-change</code>).
+              <strong>Automatique :</strong> Le LLM compare le prompt au champ <code>description</code> et s’active de lui-même dès que l’intention correspond.<br>
+              <strong>Manuel :</strong> L’ingénieur force la méthode avec la commande slash (ex: <code>/plan-change</code>).
             </p>
           </div>
         </div>
@@ -156,11 +164,11 @@ const skillExamples = [
           </div>
           <div class="feature-content">
             <div class="feature-title">
-              <strong>Méthode d'équipe versionnée</strong>
-              <span class="feature-pill feature-pill--git">Git · Ouvert</span>
+              <strong>Procédure opératoire (SOP) versionnée</strong>
+              <span class="feature-pill feature-pill--git">Git · Standard ouvert</span>
             </div>
             <p>
-              Fini les prompts perdus dans un coin : la recette de travail est un fichier Markdown standardisé dans le dépôt, partageable et améliorable en équipe.
+              Un skill est la <strong>procédure opératoire standard outillée</strong> de l’agent (fichier <code>SKILL.md</code>). Au lieu de laisser l'IA deviner, sa méthode pas-à-pas est formalisée, versionnée dans Git, partagée en équipe et auditable.
             </p>
           </div>
         </div>
@@ -169,7 +177,7 @@ const skillExamples = [
         <div class="repo-skills-box">
           <div class="repo-skills-title">
             <span class="repo-skills-tag">DÉPÔT</span>
-            <span>4 skills prêts à l’emploi pour la démo</span>
+            <span>4 skills prêts à l’emploi dans le projet</span>
           </div>
           <div class="repo-skills-grid">
             <div
@@ -192,8 +200,8 @@ const skillExamples = [
     <div class="skill-question-row">
       <SlideQuestion
         variant="emerald"
-        question="Pourquoi utiliser un skill plutôt qu’un simple prompt ?"
-        answer="Un skill transforme une intention en procédure outillée standardisée. Il est versionné avec le code, partagé en équipe et activable automatiquement par matching sémantique."
+        question="Pourquoi formaliser un skill plutôt qu’un simple prompt ?"
+        answer="Un skill est une procédure opératoire standardisée (SOP) outillée. Il est versionné avec le code, partagé en équipe et activable automatiquement par matching sémantique."
       />
     </div>
   </div>
@@ -202,94 +210,78 @@ const skillExamples = [
 <style scoped>
 .skill-anatomy {
   display: flex;
+  flex: 1;
   flex-direction: column;
   gap: 5px;
-  margin: 0 auto;
+  justify-content: flex-start;
+  margin: 2px auto 0;
   max-width: 1040px;
+  width: 100%;
 }
 
-/* 1. Discrete Contrast Bar */
-.contrast-bar {
+/* 1. Intro Strip */
+.skill-intro-strip {
   align-items: center;
-  background: #ffffff;
-  border: 1px solid #e2e8f0;
-  border-radius: 7px;
-  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04);
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  border-left: 3.5px solid var(--teal, #00875a);
+  border-radius: 6px;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.03);
   display: flex;
-  gap: 14px;
-  padding: 3px 14px;
+  gap: 10px;
+  padding: 3px 10px;
 }
 
-.contrast-item {
-  align-items: center;
-  display: flex;
-  flex: 1;
-  gap: 7px;
-  min-width: 0;
-}
-
-.contrast-divider {
-  color: #94a3b8;
-  font-size: 10.5px;
-  font-weight: 700;
-  text-transform: uppercase;
-}
-
-.contrast-badge {
-  border-radius: 5px;
-  flex-shrink: 0;
-  font-size: 9px;
+.intro-pill {
+  background: var(--teal, #00875a);
+  border-radius: 999px;
+  color: #ffffff;
+  font-size: 8.5px;
   font-weight: 800;
   letter-spacing: 0.04em;
-  padding: 1.5px 6px;
+  padding: 1.5px 7px;
   text-transform: uppercase;
   white-space: nowrap;
 }
 
-.contrast-badge--rule {
-  background: #eff6ff;
-  border: 1px solid #bfdbfe;
-  color: #1e40af;
+.intro-text {
+  color: #334155;
+  font-size: 11px;
+  line-height: 1.3;
 }
 
-.contrast-badge--skill {
-  background: #f0fdf4;
-  border: 1px solid #99f6e4;
-  color: #065f46;
-}
-
-.contrast-desc {
-  color: #475569;
-  font-size: 10.5px;
-  line-height: 1.25;
-  white-space: nowrap;
-}
-
-.contrast-desc strong {
+.intro-text strong {
   color: #0f172a;
 }
 
-.contrast-desc em {
-  color: #64748b;
-  font-style: normal;
+.intro-text code {
+  background: rgba(0, 0, 0, 0.06);
+  border-radius: 3px;
+  color: #047857;
+  font-size: 10px;
+  padding: 1px 4px;
 }
 
 /* 2. Main Grid */
 .anatomy-grid {
   align-items: stretch;
   display: grid;
+  flex: 1;
   gap: 10px;
-  grid-template-columns: 1.25fr 0.95fr;
+  grid-template-columns: 1.26fr 0.94fr;
+  min-height: 260px;
 }
 
 /* Editor Window */
 .editor-window {
   background: #0b1120;
   border: 1px solid #334155;
-  border-radius: 9px;
+  border-radius: 10px;
   box-shadow: 0 6px 20px rgba(15, 23, 42, 0.18);
   display: flex;
+  flex: 1;
   flex-direction: column;
+  min-height: 260px;
   overflow: hidden;
 }
 
@@ -299,18 +291,18 @@ const skillExamples = [
   border-bottom: 1px solid #334155;
   display: flex;
   gap: 9px;
-  padding: 4px 10px;
+  padding: 5px 10px;
 }
 
 .editor-dots {
   display: flex;
-  gap: 4.5px;
+  gap: 5px;
 }
 
 .dot {
   border-radius: 50%;
-  height: 7.5px;
-  width: 7.5px;
+  height: 8px;
+  width: 8px;
 }
 .dot--red { background: #ef4444; }
 .dot--yellow { background: #f59e0b; }
@@ -325,11 +317,11 @@ const skillExamples = [
   color: #f1f5f9;
   display: flex;
   font-family: ui-monospace, SFMono-Regular, monospace;
-  font-size: 9.5px;
+  font-size: 10px;
   font-weight: 600;
   gap: 5px;
-  margin-bottom: -5px;
-  padding: 2.5px 7px 3.5px;
+  margin-bottom: -7px;
+  padding: 3px 8px 4px;
 }
 
 .tab-icon {
@@ -338,7 +330,7 @@ const skillExamples = [
 
 .editor-badge {
   color: #64748b;
-  font-size: 8.5px;
+  font-size: 9px;
   font-weight: 700;
   letter-spacing: 0.05em;
   margin-left: auto;
@@ -348,10 +340,12 @@ const skillExamples = [
 .editor-body {
   color: #e2e8f0;
   display: flex;
+  flex: 1;
   flex-direction: column;
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
   font-size: 9.5px;
-  gap: 5px;
+  gap: 4px;
+  justify-content: space-between;
   line-height: 1.32;
   padding: 6px 10px;
 }
@@ -360,7 +354,7 @@ const skillExamples = [
   background: rgba(30, 41, 59, 0.45);
   border: 1px solid rgba(51, 65, 85, 0.5);
   border-radius: 5px;
-  padding: 4px 7px;
+  padding: 3.5px 7px;
 }
 
 .code-section--yaml {
@@ -444,7 +438,7 @@ const skillExamples = [
   font-size: 9px;
   gap: 4px;
 }
-.c-alert-sub { color: #94a3b8; font-size: 8.5px; }
+.c-alert-sub { color: #94a3b8; font-size: 8px; }
 
 .c-tag {
   background: rgba(165, 180, 252, 0.12);
@@ -456,11 +450,34 @@ const skillExamples = [
   padding: 0.5px 3.5px;
 }
 
+.c-tag--ro {
+  background: rgba(244, 63, 94, 0.15);
+  border-color: rgba(244, 63, 94, 0.4);
+  color: #fb7185;
+}
+
+.c-tag-row {
+  margin-top: 2px;
+}
+
+.c-out-tag {
+  background: rgba(168, 85, 247, 0.15);
+  border: 1px solid rgba(168, 85, 247, 0.35);
+  border-radius: 3px;
+  color: #c084fc;
+  font-size: 8px;
+  font-weight: 700;
+  padding: 0.5px 3.5px;
+}
+
 /* Right Column: Powers */
 .powers-col {
   display: flex;
+  flex: 1;
   flex-direction: column;
-  gap: 5px;
+  gap: 6px;
+  justify-content: space-between;
+  min-height: 260px;
 }
 
 .feature-card {
@@ -471,7 +488,7 @@ const skillExamples = [
   box-shadow: 0 2px 5px rgba(15, 23, 42, 0.03);
   display: flex;
   gap: 8px;
-  padding: 5px 8px;
+  padding: 5px 10px;
 }
 
 .feature-card--trigger {
@@ -506,7 +523,7 @@ const skillExamples = [
 .feature-title strong {
   color: #0f172a;
   font-size: 11px;
-  font-weight: 700;
+  font-weight: 750;
 }
 
 .feature-pill {
@@ -516,7 +533,7 @@ const skillExamples = [
   color: #065f46;
   font-size: 8px;
   font-weight: 700;
-  padding: 0.5px 3.5px;
+  padding: 1px 4px;
 }
 
 .feature-pill--git {
@@ -528,7 +545,7 @@ const skillExamples = [
 .feature-content p {
   color: #475569;
   font-size: 9.5px;
-  line-height: 1.25;
+  line-height: 1.3;
   margin: 0;
 }
 
@@ -547,9 +564,11 @@ const skillExamples = [
   border: 1px solid #e2e8f0;
   border-radius: 7px;
   display: flex;
+  flex: 1;
   flex-direction: column;
   gap: 4px;
-  padding: 5px 7px;
+  justify-content: space-between;
+  padding: 5px 8px;
 }
 
 .repo-skills-title {
@@ -557,7 +576,7 @@ const skillExamples = [
   color: #334155;
   display: flex;
   font-size: 9.5px;
-  font-weight: 700;
+  font-weight: 750;
   gap: 5px;
 }
 
@@ -568,12 +587,13 @@ const skillExamples = [
   font-size: 7.5px;
   font-weight: 800;
   letter-spacing: 0.05em;
-  padding: 0.5px 3px;
+  padding: 1px 3.5px;
 }
 
 .repo-skills-grid {
   display: grid;
-  gap: 4px;
+  flex: 1;
+  gap: 5px;
   grid-template-columns: 1fr 1fr;
 }
 
@@ -581,7 +601,10 @@ const skillExamples = [
   background: #ffffff;
   border: 1px solid #e2e8f0;
   border-radius: 5px;
-  padding: 3px 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 3px 6px;
   transition: border-color 0.15s ease;
 }
 
@@ -593,25 +616,25 @@ const skillExamples = [
   color: #0f766e;
   font-family: ui-monospace, SFMono-Regular, monospace;
   font-size: 9px;
-  font-weight: 700;
+  font-weight: 750;
 }
 
 .skill-item-role {
   color: #0f172a;
   font-size: 8.5px;
-  font-weight: 600;
-  line-height: 1.15;
+  font-weight: 650;
   margin-top: 1px;
 }
 
 .skill-item-note {
   color: #64748b;
-  font-size: 7.5px;
-  line-height: 1.15;
+  font-size: 8px;
+  line-height: 1.2;
 }
 
 /* Question row */
 .skill-question-row {
-  margin-top: 0;
+  margin-top: 8px;
+  margin-bottom: 6px;
 }
 </style>
