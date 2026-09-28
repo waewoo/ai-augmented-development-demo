@@ -139,11 +139,11 @@ Références officielles : [MCP Slidev](https://sli.dev/features/mcp) et [Slidev
 ```bash
 make slides-check            # build Slidev et contrôle du deck
 make slides-build            # build web statique dans presentation/dist/
-make slides-pdf              # PDF
-make slides-pptx             # PPTX
-make slides-pptx-editable    # PPTX éditable
-make slides-png              # captures PNG
-make slides-export           # tous les formats de diffusion
+make slides-export-pdf       # PDF
+make slides-export-pptx      # PPTX
+make slides-export-pptx-editable # PPTX éditable
+make slides-export-png       # captures PNG
+make slides-export-all       # tous les formats de diffusion
 make slides                  # vérification puis tous les exports
 ```
 
@@ -201,10 +201,10 @@ Si l’arbre est propre, un état peut être ouvert en lecture avec :
 git switch --detach demo/start
 ```
 
-Pour préserver le worktree principal, préparer plutôt une copie isolée via le Makefile :
+Pour préserver le worktree principal, préparer plutôt une copie isolée via Git :
 
 ```bash
-make demo-create-worktree WORKTREE=../ai-augmented-development-demo-start
+git worktree add --detach ../ai-augmented-development-demo-start demo/start
 ```
 
 La commande refuse d’écraser un chemin existant. Ne pas utiliser `git reset --hard` pendant la démonstration.
